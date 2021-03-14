@@ -17,6 +17,6 @@ import {StoreType} from './Redux/state'
 }
 
 store.subscribe(rerenderEntireTree);
-
 rerenderEntireTree(store.getState());
+
 
