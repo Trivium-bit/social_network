@@ -7,16 +7,16 @@ import {RootStateType} from './Redux/state'
 import {BrowserRouter} from "react-router-dom"
 import {StoreType} from './Redux/state'
 
-    let rerenderEntireTree = (store: StoreType) => {
+let rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
-        <App store={store}
-             addPost={store.addPost.bind(store)}
-             updateNewPostText={store.updateNewPostText.bind(store)} />
+            <App store={store}
+                 addPost={store.addPost.bind(store)}
+                 updateNewPostText={store.updateNewPostText.bind(store)}/>
         </BrowserRouter>, document.getElementById('root'));
 }
 
 store.subscribe(rerenderEntireTree);
-
 rerenderEntireTree(store.getState());
+
 
