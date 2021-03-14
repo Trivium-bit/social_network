@@ -1,0 +1,27 @@
+.dialogs {
+display: grid;
+grid-template-columns: 2fr 10fr;
+
+}
+
+.dialogsItems {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 10px;
+}
+
+.dialogsItems a {
+    padding: 10px;
+    text-decoration: none;
+    color: rgb(241, 219, 219);
+}
+
+.dialogsItems .active {
+      color: rgb(72, 0, 121);
+}
+
+.messages {
+    padding: 10px;
+    color:rgb(48, 48, 48);
+
+}
+
