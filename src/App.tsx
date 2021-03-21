@@ -5,13 +5,12 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom"
-import { RootStateType } from './Redux/state';
+import {ActionsType, RootStateType} from './Redux/state';
 import {StoreType} from './Redux/state'
 
 type PropsType = {
     store: StoreType
-    addPost: (newPostText: string) => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionsType) => void
 }
 
 const App: React.FC<PropsType> = (props) => {

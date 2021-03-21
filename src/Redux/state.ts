@@ -34,13 +34,13 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    updateNewPostText: (newText: string) => void
-    addPost: (newPostText: string) => void
     getState: () => RootStateType
     subscribe: (observer: (state: RootStateType) => void) => void
     _callSubscriber: (state: RootStateType) => void
-    dispatch: (action: AddPostActionType | ChangeNewTextActionType) => void
+    dispatch: (action: ActionsType) => void
 }
+
+export type ActionsType = AddPostActionType | ChangeNewTextActionType
 
 type AddPostActionType = {
     type: 'ADD-POST'
