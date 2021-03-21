@@ -8,6 +8,7 @@ type ProfilePropsType = {
     newPostText: string
     addPost: (message: string) => void
     updateNewPostText: (message: string) => void
+
 }
 const Profile= (props: ProfilePropsType) => {
 

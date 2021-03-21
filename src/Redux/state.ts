@@ -39,7 +39,17 @@ export type StoreType = {
     getState: () => RootStateType
     subscribe: (observer: (state: RootStateType) => void) => void
     _callSubscriber: (state: RootStateType) => void
-    dispatch: () => void
+    dispatch: (action: AddPostActionType | ChangeNewTextActionType) => void
+}
+
+type AddPostActionType = {
+    type: 'ADD-POST'
+    }
+
+type ChangeNewTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+
 }
 
 let store: StoreType = {
