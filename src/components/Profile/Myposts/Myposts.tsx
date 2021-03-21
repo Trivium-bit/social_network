@@ -15,12 +15,14 @@ const Myposts = (props: MyPostsPropsType) => {
     let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id}/>);
 
     let addPost = () => {
-        props.addPost(props.newPostText);
-        props.updateNewPostText("");
-        }
+        // props.addPost(props.newPostText);
+        // props.updateNewPostText("");
+        props.dispatch({ type: 'ADD-POST'});
+    }
 
 let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-     props.updateNewPostText(e.currentTarget.value);
+     //props.updateNewPostText(e.currentTarget.value);
+    props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: text})
     }
 
 

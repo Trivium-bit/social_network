@@ -39,6 +39,7 @@ export type StoreType = {
     getState: () => RootStateType
     subscribe: (observer: (state: RootStateType) => void) => void
     _callSubscriber: (state: RootStateType) => void
+    dispatch: () => void
 }
 
 let store: StoreType = {
@@ -51,7 +52,7 @@ let store: StoreType = {
                 {id: 4, message: "Yo!", likesCount: 15}
             ],
             newPostText: 'it-kamasutra.com'
-        }, 
+        },
         dialogPage: {
             dialogs: [
                 {id: 1, name: "Dimych"},
@@ -68,32 +69,31 @@ let store: StoreType = {
                 {id: 5, message: "La-la-la"}
             ]
         },
-        sidebar: {
-    
-        }
+        sidebar: {}
     },
     getState() {
         return this._state
     },
-    _callSubscriber(state ) {
+    _callSubscriber(state) {
         console.log("state changed");
     },
     subscribe(observer) {
-    this._callSubscriber = observer;
-},
-    addPost(newPostText: string) {
-        let newPost: PostsType  = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = " ";
-        this._callSubscriber(this._state);  //
+        this._callSubscriber = observer;
     },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);  //
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost: PostsType = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = " ";
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
     }
 }
 
