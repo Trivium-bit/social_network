@@ -1,31 +1,31 @@
-import PostsType from './state'
+import {PostsType, ActionsType, AddPostActionType, ChangeNewTextActionType, ProfilePageType} from './state'
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-const profileReduser = (state, action) => {
-    
-    switch(action.type) {
+const profileReducer = (state: ProfilePageType, action: ActionsType) => {
+
+    switch (action.type) {
         case ADD_POST:
             let newPost: PostsType = {
-            id: 5,
-            message: state.newPostText,
-            likesCount: 0
-        };
-        state.posts.push(newPost);
-        state.newPostText = " ";
-        return state;
+                id: 5,
+                message: state.newPostText,
+                likesCount: 0
+            };
+            state.posts.push(newPost);
+            state.newPostText = " ";
+            return state;
         case UPDATE_NEW_POST_TEXT:
             state.newPostText = action.newText;
             return state;
         default:
-            return state; 
+            return state;
     }
 }
-export const addPostActionCreator = ():AddPostActionType => ({type: ADD_POST})
+export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
 
-export const updateNewPostTextActionCreator = (newPostText:string):ChangeNewTextActionType => ({
-              type: UPDATE_NEW_POST_TEXT,newText: newPostText})
+export const updateNewPostTextActionCreator = (newPostText: string): ChangeNewTextActionType => ({
+    type: UPDATE_NEW_POST_TEXT, newText: newPostText
+})
 
-
-export default profileReduser;
+export default profileReducer;

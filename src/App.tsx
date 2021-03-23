@@ -23,14 +23,16 @@ const App: React.FC<PropsType> = (props) => {
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path="/dialogs" render={() => <Dialogs store={props.store} dispatch={props.store.dispatch.bind(props.store)} />}/>
-                    <Route path="/profile" render={() => <Profile posts={state.profilePage.posts} dispatch={props.store.dispatch.bind(props.store)} newPostText={state.profilePage.newPostText} />}/>
+                    <Route path="/dialogs" render={() => <Dialogs store={props.store}
+                                                                  dispatch={props.store.dispatch.bind(props.store)}/>}/>
+                    <Route path="/profile" render={() => <Profile posts={state.profilePage.posts}
+                                                                  dispatch={props.store.dispatch.bind(props.store)}
+                                                                  newPostText={state.profilePage.newPostText}/>}/>
                 </div>
             </div>
         </BrowserRouter>);
 
 }
-
 
 
 export default App
