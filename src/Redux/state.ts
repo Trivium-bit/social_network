@@ -1,3 +1,8 @@
+import profileReduser from './profile_reducer'
+import dialogsReduser from './dialogs_reducer'
+import sidebarReduser from './sidebar_reducer'
+
+
 export type MessageType = {
     id: number
     message: string
@@ -6,6 +11,7 @@ export type MessageType = {
 export type DialogsType = {
     id: number
     name: string
+       
 }
 
 export type PostsType = {
@@ -17,6 +23,8 @@ export type PostsType = {
 export type DialogPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
+    newMessageText: string
+    
 }
 
 export type ProfilePageType = {
@@ -40,20 +48,25 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
-export type ActionsType = AddPostActionType | ChangeNewTextActionType
+export type ActionsType = AddPostActionType | ChangeNewTextActionType | SendMessageType | UpdateNewMessageTextType
 
 type AddPostActionType = {
     type: 'ADD-POST'
-    }
+}
 
 type ChangeNewTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
-
 }
+type SendMessageType = {
+    type: 'SEND-MESSAGE'
+    
+}
+type UpdateNewMessageTextType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newMessage: string
+    }    
 
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
 let store: StoreType = {
     _state: {
@@ -80,7 +93,8 @@ let store: StoreType = {
                 {id: 3, message: "Go Dota?"},
                 {id: 4, message: "Yes!"},
                 {id: 5, message: "La-la-la"}
-            ]
+            ],
+            newMessageText: 'it-kamasutra.com'
         },
         sidebar: {}
     },
@@ -94,27 +108,26 @@ let store: StoreType = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let newPost: PostsType = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = " ";
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        }
+
+        this._state.profilePage = profileReduser(this._state.profilePage, action);
+        this._state.dialogPage = dialogsReduser(this._state.dialogPage, action);
+        this._state.sidebar = sidebarReduser(this._state.sidebar, action);
+
+        this._callSubscriber(this._state);
+      
     }
 }
 
-export const addPostActionCreator = ():AddPostActionType => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (newPostText:string):ChangeNewTextActionType => ({
-              type: UPDATE_NEW_POST_TEXT,newText: newPostText})
+
+
+
+
+
+
+
+
 
 export default store;
 
 //@ts-ignore
-window.store = store
+window.store = store;
