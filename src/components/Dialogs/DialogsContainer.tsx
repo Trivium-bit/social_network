@@ -3,8 +3,7 @@ import {updateNewMessageTextCreator, sendMessageCreator} from "./../../Redux/dia
 import {DialogPageType, StoreType} from '../../Redux/store'
 import {ActionsType} from '../../Redux/store'
 import Dialogs from "./Dialogs";
-import StoreContext from '../../StoreContext';
-
+import {connect} from "net";
 
 type PropsType = {
     store: StoreType
@@ -14,25 +13,21 @@ type PropsType = {
     dialogPage: DialogPageType
 }
 
-const DialogsContainer = () => {
-
-       return <StoreContext.Consumer>
-           { (store )=> {
-               let state = store.getState().dialogPage;
-
-               let onSendMessageClick = () => {
-                   store.dispatch(sendMessageCreator())
-               };
-               let onChangeMessage = (text: string) => {
-                   store.dispatch(updateNewMessageTextCreator(text))
-               };
-
-               return <Dialogs updateNewMessageBody={onChangeMessage}
-                               sendMessage={onSendMessageClick}
-                               dialogPage={state}/>
-           }
+let mapStateToProps = (state) => {
+        return{
+        dialogPage: state.dialogPage
     }
-    </StoreContext.Consumer>
 }
+let mapDispatchToProps = (dispatch) => {
+    return {
+        sendMessage: () => {
+            dispatch(sendMessageCreator())
+        },
+        updateNewMessageBody: (text) => {
+            dispatch(updateNewMessageTextCreator(text))
+        }
+    }
+}
+    const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
