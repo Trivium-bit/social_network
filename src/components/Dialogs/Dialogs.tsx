@@ -13,22 +13,26 @@ import { ChangeEvent } from 'react';
 type PropsType = {
     store: StoreType
     dispatch: (action: ActionsType) => void
+    updateNewMessageBody: (text: string) => void
+    sendMessage: () => void
+    dialogPage: DialogPageType
 }
 
 const Dialogs = (props: PropsType) => {
 
-    let state = props.store.getState().dialogPage;
+    let state = props.dialogPage;
 
     let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
     let messagesElements = state.messages.map(m => <Message message={m.message}/>)
     let newMessageText = state.newMessageText
 
     let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageCreator())
+        props.sendMessage()
     }
     let onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.target.value;
-        props.store.dispatch(updateNewMessageTextCreator(text))
+        props.updateNewMessageBody(text)
+
     }
 
     return (

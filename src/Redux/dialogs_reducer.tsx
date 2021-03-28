@@ -3,7 +3,7 @@ import {ActionsType, DialogPageType, SendMessageType, UpdateNewMessageTextType} 
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
-let inicialState = {
+let initialState = {
     dialogs: [
         {id: 1, name: "Dimych"},
         {id: 2, name: "Sasha"},
@@ -21,7 +21,7 @@ let inicialState = {
     newMessageText: 'it-kamasutra.com'
 }
 
-const dialogsReducer = (state: DialogPageType = inicialState, action: ActionsType) => {
+const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType) => {
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:

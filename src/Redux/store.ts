@@ -68,7 +68,7 @@ export type UpdateNewMessageTextType = {
     }    
 
 
-let store: StoreType = {
+export let store: StoreType = {
     _state: {
         profilePage: {
             posts: [

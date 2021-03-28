@@ -3,7 +3,7 @@ import {PostsType, ActionsType, AddPostActionType, ChangeNewTextActionType, Prof
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-let inicialState = {
+let initialState = {
     posts: [
         {id: 1, message: "Hi how are you?", likesCount: 12},
         {id: 2, message: "Hi!", likesCount: 9},
@@ -13,7 +13,7 @@ let inicialState = {
     newPostText: 'it-kamasutra.com'
 }
 
-const profileReducer = (state: ProfilePageType = inicialState, action: ActionsType) => {
+const profileReducer = (state: ProfilePageType = initialState, action: ActionsType) => {
 
     switch (action.type) {
         case ADD_POST:
