@@ -10,7 +10,6 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type PropsType = {
     store: StoreType
-    dispatch: (action: ActionsType) => void
 }
 
 const App: React.FC<PropsType> = (props: PropsType) => {
@@ -21,10 +20,8 @@ const App: React.FC<PropsType> = (props: PropsType) => {
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path="/dialogs" render={() => <DialogsContainer store={props.store}
-                                                                  />}/>
-                    <Route path="/profile" render={() => <Profile store={props.store}
-                                                                  />}/>
+                    <Route path="/dialogs" render={() => <DialogsContainer />}/>
+                    <Route path="/profile" render={() => <Profile />}/>
                 </div>
             </div>
         </BrowserRouter>);
