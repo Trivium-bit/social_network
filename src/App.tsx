@@ -5,8 +5,8 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom"
-import {ActionsType, RootStateType} from './Redux/state';
-import {StoreType} from './Redux/state'
+import {ActionsType} from './Redux/store';
+import {StoreType} from './Redux/store'
 
 type PropsType = {
     store: StoreType
