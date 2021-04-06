@@ -1,7 +1,26 @@
-import {ActionsType, DialogPageType, SendMessageType, UpdateNewMessageTextType} from "./store";
+import {
+    ActionsType,
+    SendMessageType,
+    UpdateNewMessageTextType
+} from "./store";
 
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 const SEND_MESSAGE = 'SEND-MESSAGE'
+
+export type MessageType = {
+    id: number
+    message: string
+}
+
+export type DialogsType = {
+    id: number
+    name: string
+}
+/*type DialogPageType = {
+    dialogs: Array<DialogsType>
+    messages: Array<MessageType>
+    newMessageText: string
+}*/
 
 let initialState = {
     dialogs: [
@@ -10,18 +29,21 @@ let initialState = {
         {id: 3, name: "Andrey"},
         {id: 4, name: "Sveta"},
         {id: 5, name: "Igor"}
-    ],
+    ] as Array<DialogsType>,
     messages: [
         {id: 1, message: "Hi!"},
         {id: 2, message: "Hello my frieds!"},
         {id: 3, message: "Go Dota?"},
         {id: 4, message: "Yes!"},
         {id: 5, message: "La-la-la"}
-    ],
+    ] as Array<MessageType>,
     newMessageText: 'it-kamasutra.com'
 }
 
-const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType) => {
+export type InitialStateType = typeof initialState
+
+
+const dialogsReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:

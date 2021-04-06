@@ -3,10 +3,11 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Red
 import {ActionsType, PostsType, StoreType} from "../../../Redux/store";
 import Myposts from "./Myposts";
 import {connect} from "net";
+import { AppStateType } from '../../../Redux/redux-store';
 
 
 
-type MyPostsPropsType = {
+export type MyPostsPropsType = {
     store: StoreType
     posts: Array<PostsType>
     newPostText: string
@@ -14,13 +15,13 @@ type MyPostsPropsType = {
     updateNewPostText: (value: string) => void
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText
     }
 }
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
     return {
         addPost: () => {
             dispatch(addPostActionCreator())
