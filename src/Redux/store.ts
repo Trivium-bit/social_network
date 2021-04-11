@@ -3,7 +3,7 @@ import dialogsReducer from './dialogs_reducer'
 import sidebarReducer from './sidebar_reducer'
 
 
-/*type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
@@ -20,16 +20,16 @@ export type PostsType = {
     likesCount: number
 }
 
-/*type DialogPageType = {
+type DialogPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
     newMessageText: string
-}*/
+}
 
- /*type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
-}*/
+}
 
 export type SidebarType = {}
 
