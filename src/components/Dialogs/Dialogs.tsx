@@ -8,7 +8,7 @@ import {StoreType} from '../../Redux/store'
 import {ActionsType} from '../../Redux/store'
 import { ChangeEvent } from 'react';
 
-
+/////
 
 type PropsType = {
     store: StoreType
