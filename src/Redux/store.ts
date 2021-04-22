@@ -10,7 +10,7 @@ type MessageType = {
 
 type DialogsType = {
     id: number
-    name: string*/
+    name: string
 
 }
 
@@ -114,7 +114,7 @@ export let store: StoreType = {
         this._callSubscriber(this._state);
     }
 }
-
+////
 export default store;
 
 //@ts-ignore
