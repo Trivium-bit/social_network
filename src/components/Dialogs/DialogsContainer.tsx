@@ -3,8 +3,6 @@ import {updateNewMessageTextCreator, sendMessageCreator, DialogsType, MessageTyp
 import Dialogs from "./Dialogs";
 import {connect} from "net";
 import { AppStateType } from '../../Redux/redux-store';
-import {SendMessageType} from "../../Redux/store";
-
 
 type MapStateToPropsType = {
     dialogs: Array<DialogsType>

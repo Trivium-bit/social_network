@@ -7,7 +7,7 @@ import { AppStateType } from '../../../Redux/redux-store';
 
 
 
-export type MyPostsPropsType = {
+type MyPostsPropsType = {
     store: StoreType
     posts: Array<PostsType>
     newPostText: string
@@ -21,7 +21,7 @@ let mapStateToProps = (state: AppStateType) => {
         newPostText: state.profilePage.newPostText
     }
 }
-let mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
+let mapDispatchToProps = (dispatch) => {
     return {
         addPost: () => {
             dispatch(addPostActionCreator())

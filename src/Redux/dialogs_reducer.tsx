@@ -16,11 +16,11 @@ export type DialogsType = {
     id: number
     name: string
 }
-/*type DialogPageType = {
+export type DialogPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
     newMessageText: string
-}*/
+}
 
 let initialState = {
     dialogs: [
@@ -44,17 +44,23 @@ export type InitialStateType = typeof initialState
 
 
 const dialogsReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
-
+    
+    let stateCopy
+    
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessage;
-            return state;
-        case SEND_MESSAGE:
-            let text = state.newMessageText
-            state.newMessageText = " ";
-            state.messages.push({id: 6, message: text});
-            return state;
-        default:
+        case UPDATE_NEW_MESSAGE_TEXT: 
+        return {
+            ...state,
+            newMessageText: action.newMessage
+        };
+        case SEND_MESSAGE: 
+        let text = state.newMessageText
+        return {
+            ...state,
+            messages: [...state.messages, {id: 6, message: text}],
+            newMessageText: " ",
+            };
+            default:
             return state;
     }
 }
