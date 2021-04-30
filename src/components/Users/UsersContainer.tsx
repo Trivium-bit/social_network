@@ -7,7 +7,21 @@ import * as axios from 'axios';
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader';
 
+type MapStateToPropsType = {
+    usersPage: InitialStateType
 
+}
+
+type MapDispatchPropsType = {
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setUsers: (users: Array<UsersType>) => void
+    setCurrentPage: (pageNumber: number) => void
+    setTotalUsersCount: (totalCount: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
+}
+
+export type UsersPropsType = MapStateToPropsType & MapDispatchPropsType
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -20,7 +34,7 @@ class UsersContainer extends React.Component {
             })
     }
 
-    onPageChanged = (pageNumber) => {
+    onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         this.props.toggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
@@ -46,20 +60,7 @@ class UsersContainer extends React.Component {
     }
 }
 
-type MapStateToPropsType = {
-    usersPage: InitialStateType
-}
 
-type MapDispatchPropsType = {
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setUsers: (users: Array<UsersType>) => void
-    setCurrentPage: (pageNumber: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
-}
-
-export type UsersPropsType = MapStateToPropsType & MapDispatchPropsType
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {

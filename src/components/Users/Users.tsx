@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React from 'react';
 import styles from './users.module.css';
+import {UsersPropsType} from "./UsersContainer";
 
 
 
-let Users = (props) => {
+let Users = (props: UsersPropsType) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
