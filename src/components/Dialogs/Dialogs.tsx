@@ -5,7 +5,7 @@ import Message from './Message/Message'
 import {DialogPageType} from '../../Redux/dialogs_reducer'
 import {StoreType} from '../../Redux/store'
 import {ActionsType} from '../../Redux/store'
-import { ChangeEvent } from 'react';
+import {ChangeEvent} from 'react';
 
 type PropsType = {
     store: StoreType
@@ -33,7 +33,7 @@ const Dialogs = (props: PropsType) => {
     }
 
     return (
-        
+
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
                 {dialogsElements}
@@ -41,10 +41,15 @@ const Dialogs = (props: PropsType) => {
             <div className={classes.messages}>
                 <div>{messagesElements}</div>
                 <div>
-                    <div><textarea value={newMessageText}
-                                   placeholder="Enter your message"
-                                   onChange={onChangeMessage}></textarea></div>
-                    <div><button onClick={onSendMessageClick}>Send</button></div>
+                    <div>
+                        <textarea value={newMessageText}
+                                  placeholder="Enter your message"
+                                  onChange={onChangeMessage}>
+                        </textarea>
+                    </div>
+                    <div>
+                        <button onClick={onSendMessageClick}>Send</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -8,12 +8,13 @@ import usersReducer from "./users-reducer";
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogPage: dialogsReducer,
-    sidebar: sidebarReducer
+    sidebar: sidebarReducer,
     usersPage: usersReducer
 });
 
 let store: StoreType = createStore(rootReducer);
 
+//@ts-ignore
 window.store = store
 
 export type AppStateType = ReturnType<typeof rootReducer>
