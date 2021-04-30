@@ -2,7 +2,6 @@ import profileReducer from './profile_reducer'
 import dialogsReducer from './dialogs_reducer'
 import sidebarReducer from './sidebar_reducer'
 
-
 type MessageType = {
     id: number
     message: string
