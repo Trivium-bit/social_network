@@ -9,6 +9,9 @@ import Preloader from '../common/Preloader/Preloader';
 
 type MapStateToPropsType = {
     usersPage: InitialStateType
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
 
 }
 
