@@ -13,6 +13,7 @@ type MapStateToPropsType = {
     pageSize: number
     currentPage: number
     isFetching: boolean
+    users: UsersType
 
 }
 
