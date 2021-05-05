@@ -15,12 +15,11 @@ import Users from './Users'
 import Preloader from '../common/Preloader/Preloader';
 
 type MapStateToPropsType = {
-    usersPage: InitialStateType
     totalUsersCount: number
     pageSize: number
     currentPage: number
     isFetching: boolean
-    users: UsersType
+    users: UsersType[]
 
 }
 
@@ -31,7 +30,12 @@ type MapDispatchPropsType = {
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
-    onPageChanged: (pageNumber: number) => void
+}
+
+type TypeofUsers = {
+    items: Array<UsersType>
+    error: string | null
+    totalCount: number
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchPropsType
@@ -39,21 +43,25 @@ export type UsersPropsType = MapStateToPropsType & MapDispatchPropsType
 class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(responce => {
+         // @ts-ignore
+        axios.get<TypeofUsers>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then((response: any) => {
                 this.props.toggleIsFetching(false);
-                this.props.setUsers(responce.data.items);
-                this.props.setTotalUsersCount(responce.data.totalCount);
+                this.props.setUsers(response.data.items);
+                this.props.setTotalUsersCount(response.data.totalCount);
             })
     }
+
+
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(responce => {
+        // @ts-ignore
+        axios.get<TypeofUsers>(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then((response: any) => {
                 this.props.toggleIsFetching(false);
-                this.props.setUsers(responce.data.items);
+                this.props.setUsers(response.data.items);
             });
     }
 
@@ -64,14 +72,17 @@ class UsersContainer extends React.Component<UsersPropsType> {
             <Users totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
-                   onPageChanged={this.onPageChanged}
+                   isFetching={this.props.isFetching}
                    users={this.props.users}
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
+                   onPageChanged={this.onPageChanged}
             />
         </>
     }
 }
+
+// usersPage: InitialStateType
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {

@@ -1,9 +1,19 @@
-import axios from 'axios';
 import React from 'react';
 import styles from './users.module.css';
-import {UsersPropsType} from "./UsersContainer";
+import {UsersType} from "../../Redux/users-reducer";
 
-let Users = (props: UsersPropsType) => {
+type PropsType = {
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    isFetching: boolean
+    users: UsersType[]
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    onPageChanged: (pageNumber: number) => void
+}
+
+let Users = (props: PropsType) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
@@ -15,19 +25,19 @@ let Users = (props: UsersPropsType) => {
     return <div>
         <div>
             {pages.map(p => {
-                return <span className={props.currentPage === p && styles.selectedPage}
+                return <span className={props.currentPage === p ? styles.selectedPage : ''}
                              onClick={() => {
                                  props.onPageChanged(p)
                              }}>{p}</span>
             })}
 
         </div>
-        <button onClick={getUsers}>Get usres</button>
+        {/*<button onClick={getUsers}>Get users</button>*/}
         {
-            props.users.map(u => <div key={u.id}>
+            props.users.map((u: any) => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photo.small !== null ? u.photo.small : userPhoto} className={styles.userPhoto}/>
+                            <img src={u.photos.small !== null ? u.photos.small : u.photos.large} className={styles.userPhoto}/>
                         </div>
                     </span>
                 <span>
