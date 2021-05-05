@@ -13,31 +13,37 @@ let Users = (props: UsersPropsType) => {
     }
 
     return <div>
-            <div>
-                {pages.map(p => {
-                    return <span className={props.currentPage === p && styles.selectedPage}
-                        onClick={() => { props.onPageChanged(p) }}>{p}</span>
-                })}
+        <div>
+            {pages.map(p => {
+                return <span className={props.currentPage === p && styles.selectedPage}
+                             onClick={() => {
+                                 props.onPageChanged(p)
+                             }}>{p}</span>
+            })}
 
-            </div>
-            <button onClick={getUsers}>Get usres</button>
-            {
-                props.users.map(u => <div key={u.id}>
+        </div>
+        <button onClick={getUsers}>Get usres</button>
+        {
+            props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photo.small !== null ? u.photo.small : userPhoto} className={styles.userPhoto} />
+                            <img src={u.photo.small !== null ? u.photo.small : userPhoto} className={styles.userPhoto}/>
                         </div>
                     </span>
-                    <span>
+                <span>
                         <div>
                             {u.followed
-                                ? <button onClick={() => { props.unfollow(u.id) }}> Unfollow </button>
-                                : <button onClick={() => { props.follow(u.id) }}> Follow </button>
+                                ? <button onClick={() => {
+                                    props.unfollow(u.id)
+                                }}> Unfollow </button>
+                                : <button onClick={() => {
+                                    props.follow(u.id)
+                                }}> Follow </button>
                             }
 
                         </div>
                     </span>
-                    <span>
+                <span>
                         <div>
                             <span>
                                 <div> {u.name} </div>
@@ -49,9 +55,9 @@ let Users = (props: UsersPropsType) => {
                             </span>
                         </div>
                     </span>
-                </div>)
-            }
-        </div>
+            </div>)
+        }
+    </div>
 }
 
 export default Users

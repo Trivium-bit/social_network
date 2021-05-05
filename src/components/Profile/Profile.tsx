@@ -11,12 +11,12 @@ import MyPostContainer from "./Myposts/MypostsContainer";
     dispatch: (action: ActionsType) => void
     store: StoreType
 }*/
-const Profile= () => {
+const Profile = () => {
 
     return (
         <div>
             <ProfileInfo/>
-            <MyPostContainer />
+            <MyPostContainer/>
         </div>
     )
 }

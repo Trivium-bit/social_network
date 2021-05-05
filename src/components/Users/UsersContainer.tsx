@@ -1,8 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching } from '../../Redux/users-reducer';
-import { InitialStateType, UsersType } from "./../../Redux/users-reducer"
-import { AppStateType } from './../../Redux/redux-store'
+import {connect} from 'react-redux';
+import {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching
+} from '../../Redux/users-reducer';
+import {InitialStateType, UsersType} from "./../../Redux/users-reducer"
+import {AppStateType} from './../../Redux/redux-store'
 import * as axios from 'axios';
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader';
@@ -52,21 +59,19 @@ class UsersContainer extends React.Component<UsersPropsType> {
 
     render() {
         return <>
-            {this.props.isFetching ? <Preloader /> : null}
+            {this.props.isFetching ? <Preloader/> : null}
 
             <Users totalUsersCount={this.props.totalUsersCount}
-                pageSize={this.props.pageSize}
-                currentPage={this.props.currentPage}
-                onPageChanged={this.onPageChanged}
-                users={this.props.users}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}
+                   pageSize={this.props.pageSize}
+                   currentPage={this.props.currentPage}
+                   onPageChanged={this.onPageChanged}
+                   users={this.props.users}
+                   follow={this.props.follow}
+                   unfollow={this.props.unfollow}
             />
         </>
     }
 }
-
-
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
@@ -102,11 +107,11 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 } */
 
 export default connect(mapStateToProps, {
-   // рефакторим mapDispatchToProps (сокращаем код)
+    // рефакторим mapDispatchToProps (сокращаем код)
     follow,
     unfollow,
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
     toggleIsFetching
-}) (UsersContainer);
+})(UsersContainer);
