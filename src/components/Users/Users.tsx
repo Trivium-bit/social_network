@@ -30,7 +30,6 @@ let Users = (props: PropsType) => {
                                  props.onPageChanged(p)
                              }}>{p}</span>
             })}
-
         </div>
         {/*<button onClick={getUsers}>Get users</button>*/}
         {
