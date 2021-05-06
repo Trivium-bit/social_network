@@ -12,7 +12,7 @@ let rootReducer = combineReducers({
     usersPage: usersReducer
 });
 
-let store: StoreType = createStore(rootReducer);
+let store = createStore(rootReducer);
 
 //@ts-ignore
 window.store = store

@@ -7,9 +7,10 @@ import {BrowserRouter, Route} from "react-router-dom"
 import {StoreType} from './Redux/store'
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer"
+import {AppStateType} from "./Redux/redux-store";
 
 type PropsType = {
-    store: StoreType
+    store: AppStateType
 }
 
 const App: React.FC<PropsType> = (props: PropsType) => {
