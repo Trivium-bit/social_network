@@ -113,6 +113,5 @@ export let store: StoreType = {
 }
 
 export default store;
-
 //@ts-ignore
 window.store = store;

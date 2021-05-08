@@ -13,7 +13,6 @@ let rootReducer = combineReducers({
 });
 
 let store = createStore(rootReducer);
-
 //@ts-ignore
 window.store = store
 
