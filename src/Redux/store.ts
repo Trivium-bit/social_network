@@ -64,7 +64,6 @@ export type UpdateNewMessageTextType = {
     newMessage: string
 }
 
-
 export let store: StoreType = {
     _state: {
         profilePage: {
