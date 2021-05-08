@@ -5,7 +5,7 @@ import sidebarReducer from "./sidebar_reducer";
 import {StoreType} from "./store";
 import usersReducer from "./users-reducer";
 
-let rootReducer = combineReducers({
+export let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogPage: dialogsReducer,
     sidebar: sidebarReducer,
