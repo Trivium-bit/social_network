@@ -8,8 +8,6 @@ import {ActionsType} from '../../Redux/store'
 import {ChangeEvent} from 'react';
 
 type PropsType = {
-    store: StoreType
-    dispatch: (action: ActionsType) => void
     updateNewMessageBody: (text: string) => void
     sendMessage: () => void
     dialogPage: DialogPageType

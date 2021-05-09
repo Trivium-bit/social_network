@@ -2,8 +2,8 @@ import React, {ChangeEvent, Dispatch} from 'react';
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/profile_reducer";
 import {ActionsType, PostsType, StoreType} from "../../../Redux/store";
 import Myposts from "./Myposts";
-import {connect} from "net";
 import { AppStateType } from '../../../Redux/redux-store';
+import {connect} from "react-redux";
 
 
 
@@ -15,23 +15,27 @@ type MyPostsPropsType = {
    // updateNewPostText: (value: string) => void
 }
 
+type MapDispatchPropsType = {
+    addPost: () => void
+    updateNewPostText: (value: string)=> void
+}
 let mapStateToProps = (state: AppStateType): MyPostsPropsType => {
     return {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch<any>) => {
+let mapDispatchToProps = (dispatch: Dispatch<any>): MapDispatchPropsType => {
     return {
         addPost: () => {
             dispatch(addPostActionCreator())
         },
-        updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>) => {
-            dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
+        updateNewPostText: (value: string) => {
+            dispatch(updateNewPostTextActionCreator(value))
         }
     }
 }
-// @ts-ignore
+
 const MyPostContainer = connect(mapStateToProps, mapDispatchToProps)(Myposts);
 
 export default MyPostContainer;

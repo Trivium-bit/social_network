@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, {ChangeEvent} from 'react';
 import classes from './Myposts.module.css';
 import Post from './Post/Post';
 import {ActionsType, PostsType} from "../../../Redux/store";
@@ -7,8 +7,7 @@ import {ActionsType, PostsType} from "../../../Redux/store";
 type MyPostsPropsType = {
     posts: Array<PostsType>
     newPostText: string
-    dispatch: (action: ActionsType) => void
-    addPost: ()=> void
+    addPost: () => void
     updateNewPostText: (value: string) => void
 }
 
@@ -20,16 +19,16 @@ const Myposts = (props: MyPostsPropsType) => {
         props.addPost();
     }
 
-let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.updateNewPostText(e.currentTarget.value);
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostText(e.currentTarget.value);
 
-}
+    }
 
     return (
         <div className={classes.postBlock}>My posts
             <div>
                 <div>
-                    <textarea onChange={onPostChange} value={props.newPostText} />
+                    <textarea onChange={onPostChange} value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={onAddPost}>Add post</button>

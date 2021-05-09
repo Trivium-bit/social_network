@@ -4,20 +4,17 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom"
-import {ActionsType, ProfilePageType, StoreType, DialogPageType} from './Redux/store'
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer"
-import {AppStateType} from "./Redux/redux-store";
-import {combineReducers} from "redux";
 
 /*type PropsType = {
     store: AppStateType
 }*/
-type AppPropsType = {
-    store: StoreType<combineReducers<{profilePage: ProfilePageType; dialogsPage:  DialogPageType;}>, ActionsType >
-}
+// type AppPropsType = {
+//     store: StoreType<combineReducers<{profilePage: ProfilePageType; dialogsPage:  DialogPageType;}>, ActionsType >
+// }
 
-const App: React.FC<AppPropsType> = () => {
+const App: React.FC = () => {
 
     return (
         <BrowserRouter>

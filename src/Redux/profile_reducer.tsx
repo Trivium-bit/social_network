@@ -15,7 +15,7 @@ let initialState = {
         {id: 3, message: "Go Dota?", likesCount: 50},
         {id: 4, message: "Yo!", likesCount: 15}
     ] as Array<PostsType>,
-    newPostText: 'it-kamasutra.com'
+    newPostText: 'it-kamasutra.com' as string
 }
 export type InitialStateType = typeof initialState
 
