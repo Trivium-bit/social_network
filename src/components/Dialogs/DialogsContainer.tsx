@@ -6,10 +6,6 @@ import {connect} from "react-redux";
 
 
 type MapStateToPropsType = {
-    // dialogs: Array<DialogsType>
-    // messages: Array<MessageType>
-    // newMessageText: string
-
     dialogPage: DialogPageType
 }
 type MapDispatchPropsType = {

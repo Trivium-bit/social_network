@@ -3,8 +3,6 @@ import classes from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 import {DialogPageType} from '../../Redux/dialogs_reducer'
-import {StoreType} from '../../Redux/store'
-import {ActionsType} from '../../Redux/store'
 import {ChangeEvent} from 'react';
 
 type PropsType = {
