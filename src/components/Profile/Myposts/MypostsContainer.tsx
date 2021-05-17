@@ -5,14 +5,11 @@ import Myposts from "./Myposts";
 import { AppStateType } from '../../../Redux/redux-store';
 import {connect} from "react-redux";
 
-
-
 type MyPostsPropsType = {
    // store: StoreType
     posts: Array<PostsType>
     newPostText: string
-   // dispatch: (action: ActionsType) => void
-   // updateNewPostText: (value: string) => void
+
 }
 
 type MapDispatchPropsType = {
