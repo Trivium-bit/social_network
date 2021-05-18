@@ -25,7 +25,6 @@ const Dialogs = (props: PropsType) => {
     let onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.target.value;
         props.updateNewMessageBody(text)
-
     }
 
     return (
