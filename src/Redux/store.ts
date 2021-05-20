@@ -45,7 +45,7 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
-export type ActionsType = AddPostActionType | ChangeNewTextActionType | SendMessageType | UpdateNewMessageTextType
+export type ActionsType = AddPostActionType | ChangeNewTextActionType | SendMessageType | UpdateNewMessageTextType | AuthType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -62,6 +62,13 @@ export type SendMessageType = {
 export type UpdateNewMessageTextType = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
     newMessage: string
+}
+
+export type AuthType = {
+    type: 'SET_USER_DATA'
+    id: number,
+    email: string,
+    login: string
 }
 
 export let store: StoreType = {
