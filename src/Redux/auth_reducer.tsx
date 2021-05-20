@@ -15,9 +15,7 @@ type AuthUsersType = {
 
 export type SetUserActionType = {
     type: 'SET_USER_DATA'
-    id: number
-    email: string
-    login: string
+    data: Array<AuthType>
 }
 
 let initialState = {
