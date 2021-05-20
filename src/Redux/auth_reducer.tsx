@@ -1,5 +1,4 @@
 import InitialStateType from './redux-store'
-import {ActionsType} from './store'
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
