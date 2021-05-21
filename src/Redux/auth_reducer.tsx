@@ -9,10 +9,6 @@ type AuthType = {
         isAuth: boolean 
 }
 
-type AuthUsersType = {
-    data: Array<AuthType>
-}
-
 export type SetUserActionType = {
     type: 'SET_USER_DATA'
     data: Array<AuthType>
@@ -22,7 +18,7 @@ let initialState = {
     id: null,
     email: null,
     login: null,
-    isAuth: false 
+    isAuth: false
    }
  
 export type InitialStateType = typeof initialState
@@ -40,6 +36,6 @@ switch(action.type) {
 }
 }   
 
-export const setAuthUserData = (id, email, login): AuthUsersType => ({type: SET_USER_DATA, data: {id, email, login}})
+export const setAuthUserData = (id: number, email: string, login: string) => ({type: SET_USER_DATA, data: {id, email, login}})
 
 export default authReducer

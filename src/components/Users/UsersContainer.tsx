@@ -8,7 +8,7 @@ import {
     setTotalUsersCount,
     toggleIsFetching
 } from '../../Redux/users-reducer';
-import {InitialStateType, UsersType} from "./../../Redux/users-reducer"
+import {UsersType} from "./../../Redux/users-reducer"
 import {AppStateType} from './../../Redux/redux-store'
 import * as axios from 'axios';
 import Users from './Users'
@@ -78,8 +78,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
         </>
     }
 }
-
-// usersPage: InitialStateType
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
