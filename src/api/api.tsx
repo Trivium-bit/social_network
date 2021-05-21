@@ -1,0 +1,25 @@
+import axios from "axios";
+import {UsersType} from "./../Redux/users-reducer"
+
+type TypeofUsers = {
+    items: Array<UsersType>
+    error: string | null
+    totalCount: number
+}
+
+const instance = axios.create({
+    withCredentials: true,
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+    headers: {
+        "API-KEY": "809d50f8-0790-4db8-ac8b-7ff6bbc71c22"
+    }
+});
+
+export const usersAPI = {
+getUsers (currentPage: number = 1, pageSize: number = 10) {
+    return instance.get<TypeofUsers>(`users?page=${currentPage}&count=${pageSize}`)
+        .then(responce => {
+            return responce.data;
+        });
+}
+}
