@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './users.module.css';
 import {UsersType} from "../../Redux/users-reducer";
+import ava from '../../assets/images/ava.jpg'
 
 type PropsType = {
     totalUsersCount: number
@@ -21,7 +22,6 @@ let Users = (props: PropsType) => {
     for (let i = 0; i <= pagesCount; i++) {
         pages.push(i);
     }
-
     return <div>
         <div>
             {pages.map(p => {
@@ -36,7 +36,7 @@ let Users = (props: PropsType) => {
             props.users.map((u: any) => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photos.small !== null ? u.photos.small : u.photos.large} className={styles.userPhoto}/>
+                            <img src={u.photos.small !== null ? u.photos.small : ava} className={styles.userPhoto}/>
                         </div>
                     </span>
                 <span>
@@ -49,7 +49,6 @@ let Users = (props: PropsType) => {
                                     props.follow(u.id)
                                 }}> Follow </button>
                             }
-
                         </div>
                     </span>
                 <span>

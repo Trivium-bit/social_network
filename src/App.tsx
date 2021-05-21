@@ -13,12 +13,12 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
-                <HeaderContainer />
+                <HeaderContainer/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path="/dialogs" render={ () => <DialogsContainer />}/>
-                    <Route path="/profile" render={ () => <Profile />}/>
-                    <Route path="/users" render={ () => <UsersContainer />}/>
+                    <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+                    <Route path="/profile" render={() => <Profile/>}/>
+                    <Route path="/users" render={() => <UsersContainer/>}/>
                 </div>
             </div>
         </BrowserRouter>);
