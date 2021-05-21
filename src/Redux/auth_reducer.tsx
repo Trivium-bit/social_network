@@ -35,10 +35,8 @@ switch(action.type) {
             ...action.data,
             isAuth: true
         }
-
         default:
             return state
-
 }
 }   
 

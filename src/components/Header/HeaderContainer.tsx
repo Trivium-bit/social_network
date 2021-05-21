@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header'
+import setAuthUserData from './../../Redux/auth_reducer'
 
 class HeaderContainer extends React.Component {
     componentDidMount() {

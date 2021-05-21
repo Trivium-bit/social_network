@@ -20,7 +20,6 @@ type MapStateToPropsType = {
     currentPage: number
     isFetching: boolean
     users: UsersType[]
-
 }
 
 type MapDispatchPropsType = {
