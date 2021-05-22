@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './users.module.css';
-import {UsersType} from "../../Redux/users-reducer";
+import {toggleFollowingProgress, UsersType} from "../../Redux/users-reducer";
 import default_ava from '../../assets/images/default_ava.jpg'
 import axios from "axios";
 
@@ -13,6 +13,10 @@ type PropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
+    toggleFollowingProgress: (isFetching: boolean) => void
+    followingInProgress: boolean
+
+
 }
 
 let Users = (props: PropsType) => {
@@ -32,7 +36,6 @@ let Users = (props: PropsType) => {
                              }}>{p}</span>
             })}
         </div>
-        {/*<button onClick={getUsers}>Get users</button>*/}
         {
             props.users.map((u: any) => <div key={u.id}>
                     <span>
@@ -44,7 +47,8 @@ let Users = (props: PropsType) => {
                 <span>
                         <div>
                             {u.followed
-                                ? <button onClick={() => {
+                                ? <button disabled={props.followingInProgress} onClick={() => {
+                                    props.toggleFollowingProgress(true)
                                     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                                         withCredentials: true,
                                         headers: {
@@ -55,10 +59,12 @@ let Users = (props: PropsType) => {
                                             if (response.data.resultCode === 0) {
                                                 props.unfollow(u.id);
                                             }
+                                            props.toggleFollowingProgress(false)
                                         });
                                 }}> Unfollow </button>
 
-                                : <button onClick={() => {
+                                : <button disabled={props.followingInProgress} onClick={() => {
+                                    props.toggleFollowingProgress(true)
                                     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                                         withCredentials: true,
                                         headers: {
@@ -69,6 +75,7 @@ let Users = (props: PropsType) => {
                                             if (response.data.resultCode === 0) {
                                                 props.follow(u.id);
                                             }
+                                            props.toggleFollowingProgress(false)
                                         });
 
                                 }}> Follow </button>

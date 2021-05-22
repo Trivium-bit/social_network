@@ -17,7 +17,8 @@ export type ActionsType = FollowActionType |
     SetUsersActionType |
     SetCurrentPageActionType |
     SetTotalUsersCountActionType |
-    ToggleIsFetchingActionType
+    ToggleIsFetchingActionType |
+    ToggleIsFollowingProgressType
 
 export type FollowActionType = {
     type: 'FOLLOW'
@@ -43,13 +44,18 @@ export type ToggleIsFetchingActionType = {
     type: 'TOGGLE_IS_FETCHING'
     isFetching: boolean
 }
+export type ToggleIsFollowingProgressType = {
+    type: 'TOGGLE_IS_FOLLOWING_PROGRESS'
+    isFetching: boolean
+}
 
 let initialState = {
     users: [] as Array<UsersType>,
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: true,
+    followingInProgress: false
 };
 
 const FOLLOW = 'FOLLOW'
@@ -58,6 +64,7 @@ const SET_USERS = "SET_USERS"
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING"
+const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS"
 
 const usersReducer = (state: InitialStateType = initialState, action: ActionsType) => {
 
@@ -103,6 +110,11 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
                 ...state,
                 isFetching: action.isFetching
             }
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+            }
         default:
             return state;
 
@@ -115,6 +127,7 @@ export const setUsers = (users: Array<UsersType>) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUsersCount = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching})
+export const toggleFollowingProgress = (isFetching: boolean) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching})
 
 
 export default usersReducer;
