@@ -13,7 +13,7 @@ import {UsersType} from "./../../Redux/users-reducer"
 import {AppStateType} from './../../Redux/redux-store'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader';
-import {usersAPI} from "../../api/api";
+
 
 type MapStateToPropsType = {
     totalUsersCount: number
@@ -64,7 +64,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
                    onPageChanged={this.onPageChanged}
-                   toggleFollowingProgress={this.props.toggleFollowingProgress}
                    followingInProgress={this.props.followingInProgress}
             />
         </>
