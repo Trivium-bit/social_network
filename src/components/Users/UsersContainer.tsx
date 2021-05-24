@@ -33,7 +33,8 @@ type MapDispatchPropsType = {
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
-    getUsersThunkCreator:
+    getUsers: (currentPage: number, pageSize: number) => void
+
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchPropsType
@@ -44,12 +45,14 @@ class UsersContainer extends React.Component<UsersPropsType> {
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber);
+        this.props.getUsers(pageNumber, this.props.pageSize);
+
+        /*this.props.setCurrentPage(pageNumber);
         this.props.toggleIsFetching(true);
         usersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
             this.props.toggleIsFetching(false);
             this.props.setUsers(data.items);
-        });
+        });*/
     }
 
     render() {
