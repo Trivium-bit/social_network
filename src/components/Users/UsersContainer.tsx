@@ -6,9 +6,8 @@ import {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toggleIsFetching,
     toggleFollowingProgress,
-    getUsersThunkCreator
+    getUsers
 } from '../../Redux/users-reducer';
 import {UsersType} from "./../../Redux/users-reducer"
 import {AppStateType} from './../../Redux/redux-store'
@@ -30,8 +29,6 @@ type MapDispatchPropsType = {
     unfollow: (userId: number) => void
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
 
@@ -115,7 +112,6 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toggleIsFetching,
     toggleFollowingProgress,
-    getUsers: getUsersThunkCreator
+    getUsers
 })(UsersContainer);
