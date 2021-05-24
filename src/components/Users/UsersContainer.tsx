@@ -14,7 +14,6 @@ import {AppStateType} from './../../Redux/redux-store'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader';
 
-
 type MapStateToPropsType = {
     totalUsersCount: number
     pageSize: number
@@ -32,23 +31,14 @@ type MapDispatchPropsType = {
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
 }
-
 export type UsersPropsType = MapStateToPropsType & MapDispatchPropsType
 
 class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
       this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
-
     onPageChanged = (pageNumber: number) => {
         this.props.getUsers(pageNumber, this.props.pageSize);
-
-        /*this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items);
-        });*/
     }
 
     render() {

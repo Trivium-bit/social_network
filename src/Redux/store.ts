@@ -23,10 +23,29 @@ type DialogPageType = {
     messages: Array<MessageType>
     newMessageText: string
 }
+type PhotosType = {
+    small: string
+    large: string
+}
+type ContactsType = {
+    gitHub: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+
+}
+
+
 
 type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
+
+
 }
 
 export type SidebarType = {}
@@ -44,8 +63,6 @@ export type StoreType = {
     _callSubscriber: (state: RootStateType) => void
     dispatch: (action: ActionsType) => void
 }
-
-export type ActionsType = AddPostActionType | ChangeNewTextActionType | SendMessageType | UpdateNewMessageTextType | AuthType
 
 export type AddPostActionType = {
     type: 'ADD-POST'

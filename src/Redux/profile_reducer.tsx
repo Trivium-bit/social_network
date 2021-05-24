@@ -1,12 +1,28 @@
-import {PostsType, ActionsType, AddPostActionType, ChangeNewTextActionType} from './store'
+import {PostsType, ChangeNewTextActionType} from './store'
+import {usersAPI} from "../api/api";
+import {ProfileType} from "../components/Profile/ProfileContainer";
+
+
+export type InitialStateType = typeof initialState
+
+export type ActionsType = AddPostActionType | UpdateNewPostTextActionType | SetUserProfileActionType
+
+export type AddPostActionType = {
+    type: 'ADD_POST'
+}
+
+export type UpdateNewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newPostText: string
+}
+export type SetUserProfileActionType = {
+    type: 'SET_USER_PROFILE'
+    profile: ProfileType
+}
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-
-export type ProfilePageType = {
-    posts: Array<PostsType>
-    newPostText: string
-}
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 let initialState = {
     posts: [
@@ -17,7 +33,7 @@ let initialState = {
     ] as Array<PostsType>,
     newPostText: 'it-kamasutra.com' as string
 }
-export type InitialStateType = typeof initialState
+
 
 const profileReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
 
@@ -40,13 +56,20 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionsT
                 newPostText: action.newText
             };
         }
+        case SET_USER_PROFILE: {
+            return {...state, newPostText: action.profile};
+        }
         default:
             return state;
-
     }
 }
-export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
-
+export const addPostActionCreator = () => ({type: ADD_POST})
+export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile})
+export const getUserProfile = (userId: number) => (dispatch: any) =>{
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data));
+    })
+}
 export const updateNewPostTextActionCreator = (newPostText: string): ChangeNewTextActionType => ({
     type: UPDATE_NEW_POST_TEXT, newText: newPostText
 })
