@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 export type LocationType = {
     city: string
     country: string
@@ -132,5 +134,18 @@ export const setTotalUsersCount = (totalUsersCount: number) => ({type: SET_TOTAL
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching})
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
 
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+
+    return (dispatch: any) => {
+
+        dispatch(toggleIsFetching(true));
+
+        usersAPI.getUsers(currentPage, pageSize).then((data) => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        })
+    }
+}
 
 export default usersReducer;
