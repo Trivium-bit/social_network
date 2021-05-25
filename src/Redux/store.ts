@@ -36,16 +36,11 @@ type ContactsType = {
     website: string
     youtube: string
     mainLink: string
-
 }
-
-
 
 type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
-
-
 }
 
 export type SidebarType = {}
@@ -87,6 +82,7 @@ export type AuthType = {
     email: string,
     login: string
 }
+export type ActionsType = AddPostActionType | ChangeNewTextActionType | SendMessageType | UpdateNewMessageTextType | AuthType
 
 export let store: StoreType = {
     _state: {

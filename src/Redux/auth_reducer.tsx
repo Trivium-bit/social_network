@@ -15,7 +15,6 @@ type AuthType1 = {
     email: string,
     login: string
 }
-
 export type SetUserActionType = {
     type: 'SET_USER_DATA'
     data: AuthType1
