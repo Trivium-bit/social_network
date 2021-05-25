@@ -14,7 +14,7 @@ export type UsersType = {
 }
 
 export type InitialStateType = typeof initialState
-export type ActionsType = FollowActionType |
+export type UsersActionsType = FollowActionType |
     UnFollowActionType |
     SetUsersActionType |
     SetCurrentPageActionType |
@@ -69,7 +69,7 @@ const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING"
 const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS"
 
-const usersReducer = (state: InitialStateType = initialState, action: ActionsType) => {
+const usersReducer = (state: InitialStateType = initialState, action: UsersActionsType) => {
 
     switch (action.type) {
         case FOLLOW:

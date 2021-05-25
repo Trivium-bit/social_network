@@ -1,8 +1,12 @@
 import React, {ChangeEvent} from 'react';
 import classes from './Myposts.module.css';
 import Post from './Post/Post';
-import {ActionsType, PostsType} from "../../../Redux/store";
 
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
 
 type MyPostsPropsType = {
     posts: Array<PostsType>

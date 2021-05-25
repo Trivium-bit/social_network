@@ -1,10 +1,14 @@
-import React, {ChangeEvent, Dispatch} from 'react';
+import React, {Dispatch} from 'react';
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/profile_reducer";
-import {ActionsType, PostsType, StoreType} from "../../../Redux/store";
 import Myposts from "./Myposts";
 import { AppStateType } from '../../../Redux/redux-store';
 import {connect} from "react-redux";
 
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
 type MyPostsPropsType = {
     posts: Array<PostsType>
     newPostText: string

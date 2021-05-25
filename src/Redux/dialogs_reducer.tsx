@@ -1,8 +1,12 @@
-import {
-    ActionsType,
-    SendMessageType,
-    UpdateNewMessageTextType
-} from "./store";
+import {AppActionsType} from "./redux-store";
+
+export type UpdateNewMessageTextType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newMessage: string
+}
+export type SendMessageType = {
+    type: 'SEND-MESSAGE'
+}
 
 export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 export const SEND_MESSAGE = 'SEND-MESSAGE'
@@ -42,11 +46,10 @@ let initialState = {
 
 export type InitialStateType = typeof initialState
 
+export type DialogActionsType = UpdateNewMessageTextType | SendMessageType
 
-const dialogsReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
-    
-    let stateCopy
-    
+const dialogsReducer = (state: InitialStateType = initialState, action: DialogActionsType): InitialStateType => {
+
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT: 
         return {

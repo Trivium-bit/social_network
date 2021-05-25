@@ -1,9 +1,9 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import profileReducer from "./profile_reducer";
-import dialogsReducer from "./dialogs_reducer";
+import profileReducer, {ProfileActionsType} from "./profile_reducer";
+import dialogsReducer, {DialogActionsType} from "./dialogs_reducer";
 import sidebarReducer from "./sidebar_reducer";
-import usersReducer from "./users-reducer";
-import authReducer from "./auth_reducer";
+import usersReducer, {UsersActionsType} from "./users-reducer";
+import authReducer, {AuthActionsType} from "./auth_reducer";
 import thunkMiddleware from  "redux-thunk";
 
 export let rootReducer = combineReducers({
@@ -13,6 +13,7 @@ export let rootReducer = combineReducers({
     usersPage: usersReducer,
     auth: authReducer
 });
+export type AppActionsType = ProfileActionsType | AuthActionsType | DialogActionsType | UsersActionsType
 
 let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 //@ts-ignore
