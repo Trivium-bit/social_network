@@ -8,7 +8,6 @@ import {connect} from "react-redux";
 type MyPostsPropsType = {
     posts: Array<PostsType>
     newPostText: string
-
 }
 
 type MapDispatchPropsType = {

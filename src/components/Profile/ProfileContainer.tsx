@@ -2,15 +2,8 @@ import React from 'react';
 import Profile from "./Profile";
 import {withRouter} from "react-router-dom";
 import {connect} from 'react-redux';
-import {
-    AddPostActionType,
-    getUserProfile,
-    SetUserProfileActionType,
-    UpdateNewPostTextActionType
-} from "../../Redux/profile_reducer";
 import {AppStateType} from "../../Redux/redux-store";
-
-export type ActionsType = AddPostActionType | UpdateNewPostTextActionType | SetUserProfileActionType
+import {getUserProfile} from "../../Redux/profile_reducer";
 
 export type ProfileType = {
     id: string
