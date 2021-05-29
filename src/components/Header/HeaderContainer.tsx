@@ -24,7 +24,6 @@ class HeaderContainer extends React.Component<AuthMePropsType> {
         return <Header {...this.props} />
     }
 }
-
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login
