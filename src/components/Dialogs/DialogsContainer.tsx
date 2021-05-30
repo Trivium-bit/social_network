@@ -7,9 +7,7 @@ import {connect} from "react-redux";
 type MapStateToPropsType = {
     dialogPage: DialogPageType
     isAuth: boolean
-
 }
-
 type MapDispatchPropsType = {
     sendMessage: () => void
     updateNewMessageBody: (text: string) => void
