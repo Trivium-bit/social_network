@@ -7,7 +7,6 @@ import {getAuthUserData} from "../../Redux/auth_reducer";
 type MapDispatchPropsType = {
     getAuthUserData: () => void
 }
-
 type MapStateToPropsType = {
     isAuth: boolean
     login: string | null
