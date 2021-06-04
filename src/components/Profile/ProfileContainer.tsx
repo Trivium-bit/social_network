@@ -12,10 +12,12 @@ export type ProfileType = {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
- }
+}
+
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
 }
+
 type MapStateToPropsType = {
     profile: ProfileType
     match: any
