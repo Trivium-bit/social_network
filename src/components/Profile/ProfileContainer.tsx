@@ -6,7 +6,6 @@ import {AppStateType} from "../../Redux/redux-store";
 import {getUserProfile} from "../../Redux/profile_reducer";
 import { Redirect } from 'react-router';
 
-
 export type ProfileType = {
     id: string
     lookingForAJob: boolean
