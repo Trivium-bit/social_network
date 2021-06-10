@@ -8,10 +8,12 @@ type MapStateToPropsType = {
     dialogPage: DialogPageType
     isAuth: boolean
 }
+
 type MapDispatchPropsType = {
     sendMessage: () => void
     updateNewMessageBody: (text: string) => void
 }
+
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogPage: state.dialogPage,
