@@ -13,6 +13,7 @@ export type ProfileType = {
     fullName: string
 }
 
+
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
 }
