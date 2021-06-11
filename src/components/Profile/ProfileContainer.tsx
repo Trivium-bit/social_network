@@ -13,11 +13,9 @@ export type ProfileType = {
     fullName: string
 }
 
-
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
 }
-
 type MapStateToPropsType = {
     profile: ProfileType
     match: any
