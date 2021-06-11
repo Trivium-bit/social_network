@@ -9,10 +9,12 @@ type MapStateToPropsType = {
     isAuth: boolean
 }
 
+
 type MapDispatchPropsType = {
     sendMessage: () => void
     updateNewMessageBody: (text: string) => void
 }
+
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
