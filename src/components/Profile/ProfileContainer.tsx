@@ -16,6 +16,7 @@ export type ProfileType = {
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
 }
+
 type MapStateToPropsType = {
     profile: ProfileType
     match: any

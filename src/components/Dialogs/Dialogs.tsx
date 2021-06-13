@@ -12,6 +12,7 @@ type PropsType = {
     dialogPage: DialogPageType
     isAuth: boolean
 }
+
 const Dialogs = (props: PropsType) => {
 
     let state = props.dialogPage;
