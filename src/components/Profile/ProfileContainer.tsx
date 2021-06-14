@@ -21,7 +21,7 @@ type MapStateToPropsType = {
     profile: ProfileType
     match: any
     isAuth: boolean
-}
+
 
 export type ProfileContainerProsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps
 
