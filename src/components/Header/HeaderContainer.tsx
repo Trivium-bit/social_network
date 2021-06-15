@@ -8,12 +8,10 @@ type MapDispatchPropsType = {
     getAuthUserData: () => void
 }
 
-
 type MapStateToPropsType = {
     isAuth: boolean
     login: string | null
 }
-
 
 export type AuthMePropsType = MapStateToPropsType & MapDispatchPropsType
 
