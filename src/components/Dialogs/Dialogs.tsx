@@ -23,6 +23,7 @@ const Dialogs = (props: PropsType) => {
     let onSendMessageClick = () => {
         props.sendMessage()
     }
+
     let onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.target.value;
         props.updateNewMessageBody(text)
