@@ -67,7 +67,6 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogAc
     }
 }
 
-
 export const sendMessageAC = (): SendMessageType => ({type: SEND_MESSAGE})
 
 export const updateNewMessageTextAC = (text: string): UpdateNewMessageTextType => ({
