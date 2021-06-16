@@ -1,4 +1,3 @@
-import {AppActionsType} from "./redux-store";
 
 export type UpdateNewMessageTextType = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
