@@ -44,7 +44,6 @@ let initialState = {
 }
 
 export type InitialStateType = typeof initialState
-
 export type DialogActionsType = UpdateNewMessageTextType | SendMessageType
 
 const dialogsReducer = (state: InitialStateType = initialState, action: DialogActionsType): InitialStateType => {
