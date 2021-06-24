@@ -15,7 +15,6 @@ export type MessageType = {
     message: string
 }
 
-
 export type DialogsType = {
     id: number
     name: string
@@ -46,6 +45,7 @@ let initialState = {
 }
 
 export type InitialStateType = typeof initialState
+
 export type DialogActionsType = UpdateNewMessageTextType | SendMessageType
 
 
@@ -68,7 +68,6 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogAc
             return state;
     }
 }
-
 export const sendMessageAC = (): SendMessageType => ({type: SEND_MESSAGE})
 
 export const updateNewMessageTextAC = (text: string): UpdateNewMessageTextType => ({
