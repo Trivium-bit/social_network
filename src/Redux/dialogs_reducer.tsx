@@ -14,12 +14,10 @@ export type MessageType = {
     id: number
     message: string
 }
-
 export type DialogsType = {
     id: number
     name: string
 }
-
 export type DialogPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
