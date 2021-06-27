@@ -29,7 +29,6 @@ let initialState = {
     login: null as null | string,
     isAuth: false
 }
-
 export type InitialStateType = typeof initialState
 
 const authReducer = (state: InitialStateType = initialState, action: AuthActionsType): InitialStateType => {
