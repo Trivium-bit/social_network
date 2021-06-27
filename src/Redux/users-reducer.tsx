@@ -14,6 +14,7 @@ export type UsersType = {
 }
 
 export type InitialStateType = typeof initialState
+
 export type UsersActionsType = FollowActionType |
     UnFollowActionType |
     SetUsersActionType |
