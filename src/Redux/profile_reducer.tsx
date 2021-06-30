@@ -49,7 +49,6 @@ export const profileInitialState: ProfilePageType = {
 }
 
 export type ProfileActionsType = AddPostActionType | UpdateNewPostTextActionType | SetUserProfileActionType
-
 const profileReducer = (state: ProfilePageType = profileInitialState, action: AppActionsType): ProfilePageType => {
     switch (action.type) {
        case ADD_POST: {
