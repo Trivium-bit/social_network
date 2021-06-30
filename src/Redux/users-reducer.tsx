@@ -14,6 +14,7 @@ export type UsersType = {
 }
 
 export type InitialStateType = typeof initialState
+
 export type UsersActionsType = FollowActionType |
     UnFollowActionType |
     SetUsersActionType |
@@ -26,12 +27,10 @@ export type FollowActionType = {
     type: 'FOLLOW'
     userId: number
 }
-
 export type UnFollowActionType = {
     type: 'UNFOLLOW'
     userId: number
 }
-
 export type SetUsersActionType = {
     type: 'SET_USERS'
     users: Array<UsersType>
