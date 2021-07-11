@@ -57,6 +57,7 @@ export type ToggleIsFollowingProgressType = {
     isFetching: boolean
     userId: number
 }
+
 let initialState = {
     users: [] as Array<UsersType>,
     pageSize: 5,
@@ -65,6 +66,7 @@ let initialState = {
     isFetching: true,
     followingInProgress: [] as Array<number>
 }
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = "SET_USERS"
