@@ -52,6 +52,7 @@ export type ToggleIsFetchingActionType = {
     type: 'TOGGLE_IS_FETCHING'
     isFetching: boolean
 }
+
 export type ToggleIsFollowingProgressType = {
     type: 'TOGGLE_IS_FOLLOWING_PROGRESS'
     isFetching: boolean
