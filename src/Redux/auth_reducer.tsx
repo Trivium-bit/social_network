@@ -44,12 +44,10 @@ const authReducer = (state: InitialStateType = initialState, action: AuthActions
             return state
     }
 }
-
 export const setAuthUserData = (id: number, email: string, login: string) => ({
     type: SET_USER_DATA,
     data: {id, email, login}
 })
-
 export const getAuthUserData = () => (dispatch: any) => {
     authAPI.me().then((response: any) => {
         if (response.data.resultCode === 0) {
