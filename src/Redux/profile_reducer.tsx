@@ -11,17 +11,14 @@ export type PostsType = {
 export type AddPostActionType = {
     type: typeof ADD_POST
 }
-
 export type UpdateNewPostTextActionType = {
     type: typeof UPDATE_NEW_POST_TEXT
     newText: string
 }
-
 export type SetUserProfileActionType = {
     type: typeof SET_USER_PROFILE
     profile: ProfileType
 }
-
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
