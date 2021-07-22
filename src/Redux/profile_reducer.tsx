@@ -31,6 +31,7 @@ export type ProfilePageType = {
     profile: ProfileType
 }
 
+
 export const profileInitialState: ProfilePageType = {
     posts: [
         {id: 1, message: "Hi how are you?", likesCount: 12},
