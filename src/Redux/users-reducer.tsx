@@ -27,22 +27,18 @@ export type FollowActionType = {
     type: 'FOLLOW'
     userId: number
 }
-
 export type UnFollowActionType = {
     type: 'UNFOLLOW'
     userId: number
 }
-
 export type SetUsersActionType = {
     type: 'SET_USERS'
     users: Array<UsersType>
 }
-
 export type SetCurrentPageActionType = {
     type: 'SET_CURRENT_PAGE'
     currentPage: number
 }
-
 export type SetTotalUsersCountActionType = {
     type: 'SET_TOTAL_USERS_COUNT'
     count: number
