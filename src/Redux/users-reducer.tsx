@@ -27,6 +27,7 @@ export type FollowActionType = {
     type: 'FOLLOW'
     userId: number
 }
+
 export type UnFollowActionType = {
     type: 'UNFOLLOW'
     userId: number
