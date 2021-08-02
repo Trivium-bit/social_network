@@ -159,6 +159,7 @@ export const getUsers = (currentPage: number, pageSize: number) => {
     }
 }
 
+
 export const follow = (userId: number) => {
     return (dispatch: any) => {
         dispatch(toggleFollowingProgress(true, userId))
