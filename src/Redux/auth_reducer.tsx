@@ -22,7 +22,6 @@ export type SetUserActionType = {
     data: AuthType1
 }
 
-
 let initialState = {
     id: null as null | number ,
     email: null as null | string,
