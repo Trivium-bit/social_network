@@ -7,11 +7,9 @@ export type PostsType = {
     message: string
     likesCount: number
 }
-
 export type AddPostActionType = {
     type: typeof ADD_POST
 }
-
 export type UpdateNewPostTextActionType = {
     type: typeof UPDATE_NEW_POST_TEXT
     newText: string
