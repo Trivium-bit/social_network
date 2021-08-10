@@ -17,7 +17,6 @@ type AuthType1 = {
 }
 
 export type AuthActionsType = SetUserActionType
-
 export type SetUserActionType = {
     type: 'SET_USER_DATA'
     data: AuthType1
@@ -32,7 +31,6 @@ let initialState = {
 }
 
 export type InitialStateType = typeof initialState
-
 const authReducer = (state: InitialStateType = initialState, action: AuthActionsType): InitialStateType => {
     switch (action.type) {
         case SET_USER_DATA:
