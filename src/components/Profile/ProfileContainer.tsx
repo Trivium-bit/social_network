@@ -36,7 +36,6 @@ class ProfileContainer extends React.Component<ProfileContainerProsType> {
     }
 
     render() {
-        if (!this.props.isAuth) return <Redirect to='/login'/>
 
         return (
             <Profile {...this.props} profile={this.props.profile}/>
@@ -44,11 +43,16 @@ class ProfileContainer extends React.Component<ProfileContainerProsType> {
     }
 }
 
+let AuthRedirectContainer = (props) => {
+    if (!this.props.isAuth) return <Redirect to='/login'/>
+    return <ProfileContainer {...props} />
+}
+
 let mapStatetoProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth
 });
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
+let WithUrlDataContainerComponent = withRouter(AuthRedirectContainer)
 
 export default connect(mapStatetoProps, {getUserProfile})(WithUrlDataContainerComponent)
