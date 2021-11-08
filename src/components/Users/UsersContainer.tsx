@@ -94,9 +94,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 } */
 
-let withRedirect = withAuthRedirect(UsersContainer);
-
-export default connect(mapStateToProps, {
+export default withAuthRedirect(connect(mapStateToProps, {
     // рефакторим mapDispatchToProps (сокращаем код)
     follow,
     unfollow,
@@ -105,4 +103,4 @@ export default connect(mapStateToProps, {
     setTotalUsersCount,
     toggleFollowingProgress,
     getUsers
-})(withRedirect);
+})(UsersContainer));
