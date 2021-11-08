@@ -1,6 +1,11 @@
 import React from 'react';
 import {Redirect} from "react-router";
+import {AppStateType} from "../Redux/redux-store";
+import {connect} from "react-redux";
 
+let mapStateToPropsForRedirect = (state: AppStateType) => ({
+    isAuth: state.auth.isAuth
+});
 
 export const withAuthRedirect = (Component) => {
 
@@ -11,5 +16,7 @@ export const withAuthRedirect = (Component) => {
         }
     }
 
-    return RedirectComponent
+    let ConnectedAuthRedirectContainer = connect(mapStateToPropsForRedirect)(RedirectComponent);
+
+    return ConnectedAuthRedirectContainer;
 }
