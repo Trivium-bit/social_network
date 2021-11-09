@@ -14,6 +14,7 @@ import {AppStateType} from './../../Redux/redux-store'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader';
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import { compose } from 'redux';
 
 type MapStateToPropsType = {
     totalUsersCount: number
@@ -71,31 +72,8 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
-/* let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId));
-        },
-        unfollow: (userId: number) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUsers: (users: Array<UsersType>) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (pageNumber: number) => {
-            dispatch(setCurrentPageAC(pageNumber));
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(setTotalUsersCountAC(totalCount));
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching));
-        }
-    }
-} */
 
-export default withAuthRedirect(connect(mapStateToProps, {
-    // рефакторим mapDispatchToProps (сокращаем код)
+/* export default withAuthRedirect(connect(mapStateToProps, {
     follow,
     unfollow,
     setUsers,
@@ -103,4 +81,18 @@ export default withAuthRedirect(connect(mapStateToProps, {
     setTotalUsersCount,
     toggleFollowingProgress,
     getUsers
-})(UsersContainer));
+})(UsersContainer)); */
+
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        // рефакторим mapDispatchToProps (сокращаем код)
+        follow,
+        unfollow,
+        setUsers,
+        setCurrentPage,
+        setTotalUsersCount,
+        toggleFollowingProgress,
+        getUsers
+    })
+)(UsersContainer)

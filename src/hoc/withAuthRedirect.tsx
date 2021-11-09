@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 
 type MapStateToPropsType = {
     isAuth: boolean
-
 }
 
 const mapStateToProps = ( state: AppStateType): MapStateToPropsType => {
