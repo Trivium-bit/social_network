@@ -84,7 +84,6 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 })(UsersContainer)); */
 
 export default compose<React.ComponentType>(
-    withAuthRedirect,
     connect(mapStateToProps, {
         // рефакторим mapDispatchToProps (сокращаем код)
         follow,
@@ -94,5 +93,6 @@ export default compose<React.ComponentType>(
         setTotalUsersCount,
         toggleFollowingProgress,
         getUsers
-    })
+    }),
+    withAuthRedirect
 )(UsersContainer)
