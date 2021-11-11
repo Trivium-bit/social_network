@@ -1,13 +1,14 @@
 import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import classes from './ProfileInfo.module.css';
-import ProfileStatus from './ProfileStatus'
+import ProfileStatus from './ProfileStatus';
+import {ProfileType} from './../ProfileContainer'
 
 type PropsType = {
     profile: ProfileType
 }
 
-const ProfileInfo = (props:ProfileType) => {
+const ProfileInfo = (props:PropsType) => {
     if (!props.profile) {
         return <Preloader />
     }
@@ -17,7 +18,7 @@ const ProfileInfo = (props:ProfileType) => {
             <div className={classes.discriptionBlock}>
                 <img src={props.profile.photos.large} />
                 ava+description
-                <ProfileStatus />
+                <ProfileStatus status="Hello my friends" />
                 </div>
         </div>
     )

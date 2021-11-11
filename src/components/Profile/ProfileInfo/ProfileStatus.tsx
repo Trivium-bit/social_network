@@ -1,18 +1,28 @@
 import React from 'react';
-import classes from './ProfileInfo.module.css';
 
 
-const ProfileStatus = (props) => {
 
-    return (
-        <div className={classes.content}>
-            <img src='https://the-flow.ru/uploads/images/resize/830x0/adaptiveResize/11/27/10/38/62/fbf218a40cd7.jpg'/>
-            <div className={classes.discriptionBlock}>
-                <img src={props.profile.photos.large} />
-                ava+description
-                
-                </div>
+class ProfileStatus extends React.Component {
+
+state = {
+    editMode: false
+}
+
+render () {
+    return (   
+        <div>
+        {!this.state.editMode &&
+        <div>
+           <span> {this.props.status} </span>
         </div>
+}
+{!this.state.editMode &&
+        <div>
+           <input value={this.props.status} />
+        </div>
+}
+</div>
     )
+}
 }
 export default ProfileStatus;
