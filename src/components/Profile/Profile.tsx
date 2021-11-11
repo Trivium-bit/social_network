@@ -12,7 +12,7 @@ const Profile:React.FC<PropsType> = ({profile}) => {
 
     return (
         <div>
-            <ProfileInfo/>
+            <ProfileInfo />
             <MyPostContainer/>
         </div>
     )

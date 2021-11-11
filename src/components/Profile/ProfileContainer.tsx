@@ -52,5 +52,5 @@ export default withAuthRedirect(connect(mapStateToProps, {getUserProfile})(WithU
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile}),
     withRouter,
-    withAuthRedirect
+    /* withAuthRedirect */
 )(ProfileContainer)
