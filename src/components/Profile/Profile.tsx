@@ -8,7 +8,7 @@ type PropsType = {
     profile: ProfileType
 }
 
-const Profile:React.FC<PropsType> = ({profile}) => {
+const Profile:React.FC<PropsType> = () => {
 
     return (
         <div>
