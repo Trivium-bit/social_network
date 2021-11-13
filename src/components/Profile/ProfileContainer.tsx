@@ -18,6 +18,7 @@ export type ProfileType = {
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
     getStatus: (userId: number) => void
+    updateStatus: (status: string) => void
 }
 
 type MapStateToPropsType = {
@@ -25,7 +26,7 @@ type MapStateToPropsType = {
     match: any
     isAuth: boolean
     status: string
-    updateStatus: string    
+     
 }
 export type ProfileContainerProsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps
 

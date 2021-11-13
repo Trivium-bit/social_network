@@ -7,7 +7,7 @@ import {ProfileType} from "./ProfileContainer";
 type PropsType = {
     profile: ProfileType
     status: string
-    updateStatus: string
+    updateStatus: (status: string) => void
 }
 
 const Profile:React.FC<PropsType> = (props) => {
