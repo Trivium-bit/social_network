@@ -2,6 +2,7 @@ import React from 'react';
 
 type StatusProsType = {
 status: string
+updateStatus: string
 }
 class ProfileStatus extends React.Component<StatusProsType> {
     state = {

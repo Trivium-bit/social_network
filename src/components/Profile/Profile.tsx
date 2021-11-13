@@ -6,13 +6,15 @@ import {ProfileType} from "./ProfileContainer";
 
 type PropsType = {
     profile: ProfileType
+    status: string
+    updateStatus: string
 }
 
 const Profile:React.FC<PropsType> = (props) => {
 
     return (
         <div>
-            <ProfileInfo profile={props.profile} />
+            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
             <MyPostContainer/>
         </div>
     )

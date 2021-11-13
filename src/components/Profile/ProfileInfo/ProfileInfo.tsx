@@ -6,6 +6,8 @@ import {ProfileType} from './../ProfileContainer'
 
 type PropsType = {
     profile: ProfileType
+    status: string
+    updateStatus: string
 }
 
 const ProfileInfo = (props: PropsType) => {
@@ -17,7 +19,7 @@ const ProfileInfo = (props: PropsType) => {
            {/*  <img src='https://the-flow.ru/uploads/images/resize/830x0/adaptiveResize/11/27/10/38/62/fbf218a40cd7.jpg'/> */}
             <div className={classes.discriptionBlock}>
                 ava+description
-                <ProfileStatus status={"Hello my friends"} />
+                <ProfileStatus status={"Hello my friends"} updateStatus={props.updateStatus}/>
                 </div>
         </div>
     )

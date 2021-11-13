@@ -54,6 +54,7 @@ export const profileInitialState: ProfilePageType = {
         fullName: 'string'
     },
     status: 'string'
+    
 }
 
 export type ProfileActionsType = AddPostActionType | UpdateNewPostTextActionType | SetUserProfileActionType | SetStatusActionType
@@ -112,7 +113,9 @@ export const getStatus = (userId: number) => (dispatch: any) => {
 export const updateStatus = (status: string) => (dispatch: any) => {
     profileAPI.updateStatus(status)
     .then(response => {
-        dispatch(setStatus(response.data));
+        if (response.data.resultCode === 0) {
+        dispatch(setStatus(status));
+        }
     })
 }
 
