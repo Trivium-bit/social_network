@@ -29,9 +29,22 @@ unfollow(userId: number) {
     return instance.delete(`follow/${userId}`)
 },
 getProfile(userId: number) {
-        return   instance.get('profile' + userId);
+    console.warn('Obsolete methot. Please profileAPI object.')
+        return profileAPI.getProfile(userId);
     }
 }
+
+export const profileAPI = {
+    getProfile(userId: number) {
+            return instance.get('profile/' + userId);
+        },
+    getStatus(userId: number) {
+            return instance.get('status/' + userId);
+        },
+    updateStatus(status: string) {
+            return instance.put('status', {status: status});
+        },
+    }
 
 export const authAPI = {
 me() {
