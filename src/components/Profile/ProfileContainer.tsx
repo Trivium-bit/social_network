@@ -12,16 +12,19 @@ export type ProfileType = {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
+    
 }
 
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
+    getUserStatus: (userId: number) => void
 }
 
 type MapStateToPropsType = {
     profile: ProfileType
     match: any
     isAuth: boolean
+    
 }
 export type ProfileContainerProsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps
 
@@ -33,6 +36,7 @@ class ProfileContainer extends React.Component<ProfileContainerProsType> {
             userId = 2;
         }
         this.props.getUserProfile(userId);
+        this.props.getUserStatus(userId);
     }
 
     render() {
@@ -44,6 +48,7 @@ class ProfileContainer extends React.Component<ProfileContainerProsType> {
 
 let mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
+    status: state.profilePage.status
 });
 
 /* let WithUrlDataContainerComponent = withRouter(ProfileContainer)
