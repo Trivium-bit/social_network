@@ -1,9 +1,9 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 
-const LoginForm = () => {
+const LoginForm = (props) => {
     return (
-        <form>
+        <form onSubmit={props.handleSubmit}>
             <div>
                 <Field placeholder={"Login"} name={"login"} component={"input"} />
             </div>
@@ -25,13 +25,13 @@ const LoginReduxFrom = reduxForm({
 })(LoginForm)
 
 const Login = () => {
+const onSubmit = (formData) => { // в props придут все значения из data
+    console.log(formData)
+}
     return <div>
         <h1>Login</h1>
-        <LoginReduxFrom />
+        <LoginReduxFrom onSubmit={onSubmit} />
     </div>
-
-
-
 
 }
 
