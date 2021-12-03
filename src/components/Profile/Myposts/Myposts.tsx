@@ -45,9 +45,8 @@ type AddNewPostFormType = {
 const AddNewPostForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
-
             <div>
-                <Field name="newPostText" />
+                <Field component="textarea" name="newPostText" />
             </div>
             <div>
                 <button>Add post</button>
