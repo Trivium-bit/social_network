@@ -2,6 +2,10 @@ import React, { ChangeEvent } from 'react';
 import classes from './Myposts.module.css';
 import Post from './Post/Post';
 import { Field, reduxForm } from 'redux-form'
+import { required, maxLengthCreator } from './../../../utils/validators/validators'
+import { Textarea } from './../../common/FormsControls/FormsControls'
+
+const maxLength10 = maxLengthCreator(10);
 
 export type PostsType = {
     id: number
@@ -12,7 +16,7 @@ export type PostsType = {
 type MyPostsPropsType = {
     posts: Array<PostsType>
     newPostText: string
-    addPost: (newPostText:string) => void
+    addPost: (newPostText: string) => void
 }
 
 const Myposts = (props: MyPostsPropsType) => {
@@ -23,10 +27,10 @@ const Myposts = (props: MyPostsPropsType) => {
         props.addPost(values.newPostText);
     }
 
-/*     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewPostText(e.currentTarget.value);
-    }
- */
+    /*     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+            props.updateNewPostText(e.currentTarget.value);
+        }
+     */
     return (
         <div className={classes.postBlock}>
             <h3>My posts</h3>
@@ -46,7 +50,7 @@ const AddNewPostForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component="textarea" name="newPostText" />
+                <Field component={Textarea} name="newPostText" validate={[required, maxLength10]} type="textarea" />
             </div>
             <div>
                 <button>Add post</button>

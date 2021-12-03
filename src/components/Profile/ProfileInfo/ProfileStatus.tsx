@@ -4,7 +4,7 @@ import { ChangeEvent } from 'react';
 type StatusProsType = {
     status: string
     updateStatus: (status: string) => void
-    
+
 }
 class ProfileStatus extends React.Component<StatusProsType> {
     state = {
@@ -24,7 +24,7 @@ class ProfileStatus extends React.Component<StatusProsType> {
         });
         this.props.updateStatus(this.state.status);
     }
-    
+
     onStatusChange = (e: React.FormEvent<HTMLInputElement>) => {
         this.setState({
             status: e.currentTarget.value
@@ -33,11 +33,11 @@ class ProfileStatus extends React.Component<StatusProsType> {
 
     componentDidUpdate(prevProps: any, prevState: any) {
         debugger
-        if (prevProps.status !== this.props.status) {     
-        this.setState({
-            status: this.props.status
-        });
-    }
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            });
+        }
     }
 
     render() {
