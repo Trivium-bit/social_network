@@ -7,6 +7,6 @@ export const required: Validators = value => {
 }
 
 export const maxLengthCreator = (maxLength: number): Validators => (value: string) => {
-    if (value.length > maxLength) return `Max length is ${maxLength}30 symbols`;
+    if (value.length > maxLength) return `Max length is ${maxLength} symbols`;
     return undefined
 }
