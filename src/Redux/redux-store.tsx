@@ -4,7 +4,7 @@ import dialogsReducer, {DialogActionsType} from "./dialogs_reducer";
 import sidebarReducer from "./sidebar_reducer";
 import usersReducer, {UsersActionsType} from "./users-reducer";
 import authReducer, {AuthActionsType} from "./auth_reducer";
-import thunkMiddleware from  "redux-thunk";
+import thunkMiddleware from "redux-thunk";
 import {reducer as formReducer} from "redux-form"
 
 export let rootReducer = combineReducers({

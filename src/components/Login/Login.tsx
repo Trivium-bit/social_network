@@ -3,9 +3,9 @@ import {Field, InjectedFormProps, reduxForm} from 'redux-form'
 import {Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
-import {InitialStateType, loginTC} from "../../Redux/auth_reducer";
+import {loginTC} from "../../Redux/auth_reducer";
 import {Redirect} from "react-router";
-import {RootStateType} from "../../Redux/types";
+import {AppStateType} from "../../Redux/redux-store";
 
 type FormDataType = {
     email: string
@@ -51,7 +51,7 @@ const Login = (props: any) => {
     </div>
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppStateType) => ({
     isAuth: state.auth.isAuth
 })
 
