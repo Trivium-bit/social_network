@@ -1,9 +1,14 @@
 import React from 'react';
-import { Field, InjectedFormProps, reduxForm } from 'redux-form'
+import {Field, InjectedFormProps, reduxForm} from 'redux-form'
 import {Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {InitialStateType, loginTC} from "../../Redux/auth_reducer";
+import {Redirect} from "react-router";
+import {RootStateType} from "../../Redux/types";
 
 type FormDataType = {
+    email: string
     login: string
     password: string
     rememberMe: boolean
@@ -13,13 +18,14 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={"Login"} name={"login"} component={Input} validate={[required]}/>
+                <Field placeholder={"email"} name={"email"} component={Input} validate={[required]}/>
             </div>
             <div>
-                <Field placeholder={"Password"} name={"password"} component={Input} validate={[required]}/>
+                <Field type={"password"} placeholder={"password"} name={"password"} component={Input}
+                       validate={[required]}/>
             </div>
             <div>
-                <Field component={Input} name={"remember me"} type={"checkbox"} /> remember me
+                <Field component={Input} name={"remember me"} type={"checkbox"}/> remember me
             </div>
             <div>
                 <button>Login</button>
@@ -28,20 +34,25 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     )
 }
 
-const LoginReduxFrom = reduxForm<FormDataType>({
-    form: 'login'
-})(LoginForm)
+const LoginReduxFrom = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
-const Login = () => {
-const onSubmit = (formData: FormDataType) => { // в props придут все значения из data
-    console.log(formData)
-}
+const Login = (props: any) => {
+    const onSubmit = (formData: FormDataType) => { // в props придут все значения из data
+        props.loginTC(formData.email, formData.password, formData.rememberMe)
+    }
+
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
+    }
+
     return <div>
         <h1>Login</h1>
-        <LoginReduxFrom onSubmit={onSubmit} />
+        <LoginReduxFrom onSubmit={onSubmit}/>
     </div>
-
 }
 
+const mapStateToProps = (state: any) => ({
+    isAuth: state.auth.isAuth
+})
 
-export default Login
+export default connect(mapStateToProps, {loginTC})(Login)

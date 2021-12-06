@@ -1,9 +1,8 @@
-
 import {authAPI} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
-type DataType = {
+export type DataType = {
     id: number | null
     email: string | null
     login: string | null
@@ -51,7 +50,7 @@ export const getAuthUserData = () => (dispatch: any) => {
     })
 }
 
-export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
     authAPI.login(email, password, rememberMe)
         .then((response: any) => {
             if (response.data.resultCode === 0) {
