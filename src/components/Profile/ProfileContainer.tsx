@@ -4,7 +4,6 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {connect} from 'react-redux';
 import {AppStateType} from "../../Redux/redux-store";
 import {getUserProfile, getStatus, updateStatus} from "../../Redux/profile_reducer";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from 'redux';
 
 export type ProfileType = {
@@ -12,7 +11,6 @@ export type ProfileType = {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
-    
 }
 
 type MapDispatchToPropsType = {
@@ -26,7 +24,7 @@ type MapStateToPropsType = {
     match: any
     isAuth: boolean
     status: string
-     
+
 }
 export type ProfileContainerProsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps
 
@@ -43,7 +41,8 @@ class ProfileContainer extends React.Component<ProfileContainerProsType> {
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+                     updateStatus={this.props.updateStatus}/>
         )
     }
 }
