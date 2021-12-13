@@ -65,7 +65,8 @@ export const logout = () => (dispatch: any) => {
             if (response.data.resultCode === 0) {
                 dispatch(setAuthUserData(null, null, null, false))
             } else {
-                dispatch(stopSubmit("login", {_error: "Common error"}))
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
+                dispatch(stopSubmit("login", {_error: message}))
             }
         })
 }

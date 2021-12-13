@@ -24,6 +24,7 @@ type MapStateToPropsType = {
     match: any
     isAuth: boolean
     status: string
+    authorizedUserId: number
 
 }
 export type ProfileContainerProsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps
@@ -33,7 +34,7 @@ class ProfileContainer extends React.Component<ProfileContainerProsType> {
     componentDidMount() {
         let userId = +this.props.match.params.userId;
         if (!userId) {
-            userId = 2;
+            userId = this.props.authorizedUserId;
         }
         this.props.getUserProfile(userId);
         this.props.getStatus(userId);
@@ -41,15 +42,19 @@ class ProfileContainer extends React.Component<ProfileContainerProsType> {
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status}
-                     updateStatus={this.props.updateStatus}/>
+            <Profile {...this.props}
+                     profile={this.props.profile}
+                     status={this.props.status}
+                     updateStatus={this.props.updateStatus} />
         )
     }
 }
 
 let mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.id,
+    isAuth: state.auth.isAuth
 });
 
 /* let WithUrlDataContainerComponent = withRouter(ProfileContainer)
