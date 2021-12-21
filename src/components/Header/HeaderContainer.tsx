@@ -5,7 +5,6 @@ import {AppStateType} from "../../Redux/redux-store";
 import {logout} from "../../Redux/auth_reducer";
 
 type MapDispatchPropsType = {
-    getAuthUserData: () => void
     logout: any
 }
 type MapStateToPropsType = {

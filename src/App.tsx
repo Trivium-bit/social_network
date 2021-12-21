@@ -16,9 +16,12 @@ import Preloader from "./components/common/Preloader/Preloader";
 type MapStateToPropsType = {
     initialized: boolean
 }
+type MapDispatchPropsType = {
+    initializeApp: () => void
+}
+export type InitialPropsType = MapStateToPropsType & MapDispatchPropsType
 
-
-class App extends React.Component {
+class App extends React.Component<InitialPropsType> {
 
     componentDidMount() {
         this.props.initializeApp();
@@ -44,9 +47,9 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppStateType) => ({
     initialize: state.app.initialized
-}
+})
 
 export default compose(
     withRouter,
