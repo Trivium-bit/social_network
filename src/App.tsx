@@ -21,7 +21,7 @@ type MapDispatchPropsType = {
 }
 export type InitialPropsType = MapStateToPropsType & MapDispatchPropsType
 
-class App extends React.Component<InitialPropsType> {
+export class App extends React.Component<InitialPropsType> {
 
     componentDidMount() {
         this.props.initializeApp();
@@ -30,8 +30,7 @@ class App extends React.Component<InitialPropsType> {
     render() {
         if (!this.props.initialized) {
             return <Preloader />
-        }
-        return (
+        } return (
             <BrowserRouter>
                 <div className="app-wrapper">
                     <HeaderContainer/>
