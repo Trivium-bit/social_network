@@ -8,7 +8,7 @@ type MapStateToPropsType = {
 }
 
 const mapStateToProps = ( state: AppStateType): MapStateToPropsType => {
-    return{
+    return {
         isAuth: state.auth.isAuth
     }
 }
