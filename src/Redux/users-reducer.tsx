@@ -40,7 +40,7 @@ export type SetUsersActionType = {
 
 export type SetCurrentPageActionType = {
     type: 'SET_CURRENT_PAGE'
-    currentPage: number
+    page: number
 }
 
 export type SetTotalUsersCountActionType = {
@@ -63,7 +63,7 @@ let initialState = {
     users: [] as Array<UsersType>,
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1,
+    page: 1,
     isFetching: true,
     followingInProgress: [] as Array<number>
 }
@@ -107,7 +107,7 @@ const usersReducer = (state: InitialStateType = initialState, action: UsersActio
         case SET_CURRENT_PAGE:
             return {
                 ...state,
-                currentPage: action.currentPage
+                page: action.page
             }
         case SET_TOTAL_USERS_COUNT:
             return {
@@ -135,7 +135,7 @@ const usersReducer = (state: InitialStateType = initialState, action: UsersActio
 export const followSuccess = (userId: number) => ({ type: FOLLOW, userId })
 export const unfollowSuccess = (userId: number) => ({ type: UNFOLLOW, userId })
 export const setUsers = (users: Array<UsersType>) => ({ type: SET_USERS, users })
-export const setCurrentPage = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage })
+export const setCurrentPage = (page: number) => ({ type: SET_CURRENT_PAGE, page })
 export const setTotalUsersCount = (totalUsersCount: number) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount })
 export const toggleIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({
@@ -144,10 +144,11 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
     userId
 })
 
-export const requestUsers = (currentPage: number, pageSize: number) => {
+export const requestUsers = (page: number, pageSize: number) => {
     return (dispatch: any) => {
         dispatch(toggleIsFetching(true));
-        usersAPI.getUsers(currentPage, pageSize).then((data) => {
+        dispatch(setCurrentPage(page))
+        usersAPI.getUsers(page, pageSize).then((data) => {
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items));
             dispatch(setTotalUsersCount(data.totalCount));
