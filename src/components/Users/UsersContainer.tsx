@@ -75,7 +75,10 @@ class UsersContainer extends React.Component<UsersPropsType> {
     }
 } */
 
+
+// с использованием Selectors
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    console.log("mapStateToProps")
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -85,16 +88,6 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         followingInProgress: getFollowingInProgress(state)
     }
 }
-
-/* export default withAuthRedirect(connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    toggleFollowingProgress,
-    getUsers
-})(UsersContainer)); */
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {
