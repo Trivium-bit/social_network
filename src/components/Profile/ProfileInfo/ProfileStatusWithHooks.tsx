@@ -18,7 +18,7 @@ const ProfileStatusWithHooks = (props: StatusProsType) => {
         setEditMode(false)
         props.updateStatus(status)
     }
-    const onStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onStatusChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
     }
 
@@ -31,8 +31,8 @@ const ProfileStatusWithHooks = (props: StatusProsType) => {
             }
             {editMode &&
                 <div>
-                    <input autoFocus={true} onBlur={deactivateEditMode} />
-
+                    <input autoFocus={true} onBlur={deactivateEditMode} onChange={onStatusChange}/>
+                       
                 </div>
             }
         </div>
