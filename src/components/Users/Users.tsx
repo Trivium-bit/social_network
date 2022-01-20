@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './users.module.css';
-import { UsersType } from "../../Redux/users-reducer";
+import { setUsers, UsersType } from "../../Redux/users-reducer";
 import default_ava from '../../assets/images/default_ava.jpg'
+import axios from 'axios';
 
 type PropsType = {
     totalUsersCount: number
@@ -13,10 +14,17 @@ type PropsType = {
     unfollow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
     followingInProgress: Array<number>
-
+    setUsers: (users: Array<UsersType>) => void
 }
 
 let Users = (props: PropsType) => {
+
+    if(props.users.length === 0) {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+        .then(response => {
+            props.setUsers(response.data.items);
+        });
+    }
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 

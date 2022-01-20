@@ -9,8 +9,8 @@ import {compose} from 'redux';
 
 type MapStateToPropsType = {
     dialogPage: DialogPageType
-
 }
+
 type MapDispatchPropsType = {
     sendMessage: (newMessageText: string) => void
 }
@@ -28,7 +28,7 @@ let mapDispatchToProps = (dispatch: Dispatch<any>): MapDispatchPropsType => {
     }
 }
 
-/* const DialogsContainer = withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs));
+/*const DialogsContainer = withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs));
 export default DialogsContainer */
 
 export default compose<React.ComponentType>(
