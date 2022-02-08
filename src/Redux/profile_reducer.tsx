@@ -60,7 +60,7 @@ export const profileInitialState: ProfilePageType = {
 
 export type ProfileActionsType = AddPostActionType | SetUserProfileActionType | SetStatusActionType
 
-const profileReducer = (state: ProfilePageType = profileInitialState, action: AppActionsType): ProfilePageType => {
+export const profileReducer = (state: ProfilePageType = profileInitialState, action: AppActionsType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST: {
             let newPost: PostsType = { id: 5, message: action.newPostText, likesCount: 0 };
