@@ -11,6 +11,10 @@ export type AddPostActionType = {
     type: typeof ADD_POST
     newPostText: string
 }
+export type DeletePostActionCreator = {
+    type: typeof DELETE_POST
+    postId: number
+}
 /* 
 export type UpdateNewPostTextActionType = {
     type: typeof UPDATE_NEW_POST_TEXT
@@ -38,6 +42,7 @@ const ADD_POST = 'ADD-POST';
 /* const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'; */
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST'
 
 
 export const profileInitialState: ProfilePageType = {
@@ -58,7 +63,7 @@ export const profileInitialState: ProfilePageType = {
     
 }
 
-export type ProfileActionsType = AddPostActionType | SetUserProfileActionType | SetStatusActionType
+export type ProfileActionsType = AddPostActionType | SetUserProfileActionType | SetStatusActionType | DeletePostActionCreator
 
 export const profileReducer = (state: ProfilePageType = profileInitialState, action: AppActionsType): ProfilePageType => {
     switch (action.type) {
@@ -70,7 +75,12 @@ export const profileReducer = (state: ProfilePageType = profileInitialState, act
                 //newPostText: " "
             };
         }
-/*         case UPDATE_NEW_POST_TEXT: {
+        case DELETE_POST: {
+            return {
+                ...state, posts: state.posts.filter(p => p.id != action.postId)
+            }
+        }
+        /* case UPDATE_NEW_POST_TEXT: {
             return {
                 ...state,
                 newPostText: action.newText
@@ -93,6 +103,9 @@ export const profileReducer = (state: ProfilePageType = profileInitialState, act
 export const addPostActionCreator = (newPostText: string): AddPostActionType => ({
     type: ADD_POST, newPostText
 });
+export const deletePostAC = (postId: number): DeletePostActionCreator => ({
+    type: DELETE_POST, postId
+})
 /* export const updateNewPostTextActionCreator = (newPostText: string): UpdateNewPostTextActionType => ({
     type: UPDATE_NEW_POST_TEXT, newText: newPostText
 }); */

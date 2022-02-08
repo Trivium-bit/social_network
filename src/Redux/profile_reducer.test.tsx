@@ -1,4 +1,4 @@
-import profileReducer, { addPostActionCreator, PostsType, ProfilePageType } from './profile_reducer'
+import profileReducer, { addPostActionCreator, PostsType, ProfilePageType, deletePostAC} from './profile_reducer'
 
 let state: ProfilePageType = {
     posts: [
@@ -21,7 +21,7 @@ test('length of posts should be incremented', () => {
     let action = addPostActionCreator("it-kamasutra.com");
 
     let newState = profileReducer(state, action);
-    
+
     expect(newState.posts.length).toBe(5);
 });
 
@@ -32,5 +32,23 @@ test('message of new post should be correct', () => {
     let newState = profileReducer(state, action);
 
     expect(newState.posts[4].message).toBe("it-kamasutra.com");
+
+});
+test('after deleting length of messages should be decrement', () => {
+
+    let action = deletePostAC(1);
+
+    let newState = profileReducer(state, action);
+
+    expect(newState.posts.length).toBe(3);
+
+});
+test(`after deleting length shouldn't be decrement if id is incorrect`, () => {
+
+    let action = deletePostAC(100);
+
+    let newState = profileReducer(state, action);
+
+    expect(newState.posts.length).toBe(4);
 
 });
