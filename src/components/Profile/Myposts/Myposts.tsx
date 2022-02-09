@@ -17,6 +17,7 @@ type MyPostsPropsType = {
     posts: Array<PostsType>
     newPostText: string
     addPost: (newPostText: string) => void
+    deletePost: (postId: number) => void
 }
 
 const Myposts = (props: MyPostsPropsType) => {
