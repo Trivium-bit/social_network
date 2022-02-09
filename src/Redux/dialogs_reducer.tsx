@@ -6,9 +6,14 @@ export type SendMessageType = {
     type: 'SEND-MESSAGE'
     newMessageText: string
 }
+export type DeleteMessageType = {
+    type: 'DELETE-MESSAGE'
+    messageId: number
+}
 
 export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 export const SEND_MESSAGE = 'SEND-MESSAGE'
+export const DELETE_MESSAGE = 'DELETE-MESSAGE'
 
 export type MessageType = {
     id: number
@@ -43,20 +48,25 @@ let initialState = {
 }
 
 export type InitialStateType = typeof initialState
-export type DialogActionsType = SendMessageType
-const dialogsReducer = (state: InitialStateType = initialState, action: DialogActionsType): InitialStateType => {
+export type DialogActionsType = SendMessageType | DeleteMessageType
+export const dialogsReducer = (state: InitialStateType = initialState, action: DialogActionsType): InitialStateType => {
 
     switch (action.type) {
-       /*  case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newMessage
-            }; */
+        /*  case UPDATE_NEW_MESSAGE_TEXT:
+             return {
+                 ...state,
+                 newMessageText: action.newMessage
+             }; */
         case SEND_MESSAGE:
             let text = action.newMessageText
             return {
                 ...state,
                 messages: [...state.messages, { id: 6, message: text }],
+            };
+        case DELETE_MESSAGE:
+            return {
+                ...state,
+                messages: state.messages.filter(m => m.id !== action.messageId)
             };
         default:
             return state;
@@ -64,5 +74,6 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogAc
 }
 
 export const sendMessageAC = (newMessageText: string): SendMessageType => ({ type: SEND_MESSAGE, newMessageText })
+export const deleteMessageAC = (messageId: number): DeleteMessageType => ({ type: DELETE_MESSAGE, messageId })
 
 export default dialogsReducer;
