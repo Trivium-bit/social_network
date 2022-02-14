@@ -24,37 +24,37 @@ export type UsersActionsType = FollowActionType |
     ToggleIsFollowingProgressType
 
 export type FollowActionType = {
-    type: 'FOLLOW'
+    type: typeof FOLLOW
     userId: number
 }
 
 export type UnFollowActionType = {
-    type: 'UNFOLLOW'
+    type: typeof UNFOLLOW
     userId: number
 }
 
 export type SetUsersActionType = {
-    type: 'SET_USERS'
+    type: typeof SET_USERS
     users: Array<UsersType>
 }
 
 export type SetCurrentPageActionType = {
-    type: 'SET_CURRENT_PAGE'
+    type: typeof SET_CURRENT_PAGE
     page: number
 }
 
 export type SetTotalUsersCountActionType = {
-    type: 'SET_TOTAL_USERS_COUNT'
+    type: typeof SET_TOTAL_USERS_COUNT
     count: number
 }
 
 export type ToggleIsFetchingActionType = {
-    type: 'TOGGLE_IS_FETCHING'
+    type: typeof TOGGLE_IS_FETCHING
     isFetching: boolean
 }
 
 export type ToggleIsFollowingProgressType = {
-    type: 'TOGGLE_IS_FOLLOWING_PROGRESS'
+    type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
     isFetching: boolean
     userId: number
 }
@@ -68,13 +68,13 @@ let initialState = {
     followingInProgress: [] as Array<number>
 }
 
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = "SET_USERS"
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING"
-const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS"
+const FOLLOW = 'users/FOLLOW'
+const UNFOLLOW = 'users/UNFOLLOW'
+const SET_USERS = 'users/SET_USERS'
+const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'users/SET_TOTAL_USERS_COUNT'
+const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE_IS_FOLLOWING_PROGRESS'
 
 const usersReducer = (state: InitialStateType = initialState, action: UsersActionsType) => {
     switch (action.type) {

@@ -1,7 +1,7 @@
 import {authAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
-const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER_DATA = 'auth/SET_USER_DATA';
 
 export type DataType = {
     id: number | null
@@ -11,7 +11,7 @@ export type DataType = {
 }
 
 export type SetUserActionType = {
-    type: 'SET_USER_DATA'
+    type: typeof SET_USER_DATA
     data: DataType
 }
 

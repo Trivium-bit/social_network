@@ -38,11 +38,11 @@ export type ProfilePageType = {
     status: string
 }
 
-const ADD_POST = 'ADD-POST';
-/* const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'; */
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
-const DELETE_POST = 'DELETE_POST'
+const ADD_POST = 'profile/ADD-POST';
+/* const UPDATE_NEW_POST_TEXT = 'profile/UPDATE-NEW-POST-TEXT'; */
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_STATUS = 'profile/SET_STATUS';
+const DELETE_POST = 'profile/DELETE_POST'
 
 
 export const profileInitialState: ProfilePageType = {

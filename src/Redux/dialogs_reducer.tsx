@@ -1,19 +1,19 @@
 /* export type UpdateNewMessageTextType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    type: 'dialogs/UPDATE-NEW-MESSAGE-TEXT'
     newMessage: string
 } */
 export type SendMessageType = {
-    type: 'SEND-MESSAGE'
+    type: typeof SEND_MESSAGE
     newMessageText: string
 }
 export type DeleteMessageType = {
-    type: 'DELETE-MESSAGE'
+    type: typeof DELETE_MESSAGE
     messageId: number
 }
 
-export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-export const SEND_MESSAGE = 'SEND-MESSAGE'
-export const DELETE_MESSAGE = 'DELETE-MESSAGE'
+export const UPDATE_NEW_MESSAGE_TEXT = 'dialogs/UPDATE-NEW-MESSAGE-TEXT'
+export const SEND_MESSAGE = 'dialogs/SEND-MESSAGE'
+export const DELETE_MESSAGE = 'dialogs/DELETE-MESSAGE'
 
 export type MessageType = {
     id: number

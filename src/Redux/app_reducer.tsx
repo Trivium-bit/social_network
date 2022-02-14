@@ -1,12 +1,12 @@
 import { getAuthUserData } from "./auth_reducer";
 
-const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
+const INITIALIZED_SUCCESS = 'app/INITIALIZED_SUCCESS';
 
 export type InitializedType = {
     initialized: boolean
 }
 export type InitializedSuccessActionType = {
-    type: 'INITIALIZED_SUCCESS'
+    type: typeof INITIALIZED_SUCCESS
 }
 
 
