@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {AppStateType} from "../../Redux/redux-store";
 import {getUserProfile, getStatus, updateStatus} from "../../Redux/profile_reducer";
 import {compose} from 'redux';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 export type ProfileType = {
     id: string
@@ -65,5 +66,5 @@ export default withAuthRedirect(connect(mapStateToProps, {getUserProfile})(WithU
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
     withRouter,
-    /* withAuthRedirect */
+    withAuthRedirect
 )(ProfileContainer)
