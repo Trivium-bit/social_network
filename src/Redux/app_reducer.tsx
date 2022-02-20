@@ -1,3 +1,4 @@
+import { Dispatch } from "redux";
 import { getAuthUserData } from "./auth_reducer";
 
 const INITIALIZED_SUCCESS = 'app/INITIALIZED_SUCCESS';
@@ -15,6 +16,7 @@ let initialState: InitializedType = {
 }
 
 export type InitialStateType = typeof initialState
+
 const appReducer = (state: InitialStateType = initialState, action: InitializedSuccessActionType): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
