@@ -1,3 +1,4 @@
+import { Dispatch } from "redux";
 import { usersAPI, profileAPI } from "../api/api";
 import { ProfileType } from "../components/Profile/ProfileContainer";
 import { AppActionsType } from "./redux-store";
@@ -117,14 +118,14 @@ export const setStatus = (status: string): SetStatusActionType => ({
 });
 
 
-export const getStatus = (userId: number) => (dispatch: any) => {
+export const getStatus = (userId: number) => (dispatch: Dispatch<SetStatusActionType>) => {
     profileAPI.getStatus(userId)
     .then(response => {
         dispatch(setStatus(response.data));
     })
 }
 
-export const updateStatus = (status: string) => (dispatch: any) => {
+export const updateStatus = (status: string) => (dispatch: Dispatch<SetStatusActionType>) => {
     profileAPI.updateStatus(status)
     .then(response => {
         if (response.data.resultCode === 0) {
@@ -133,7 +134,7 @@ export const updateStatus = (status: string) => (dispatch: any) => {
     })
 }
 
-export const getUserProfile = (userId: number) => (dispatch: any) => {
+export const getUserProfile = (userId: number) => (dispatch: Dispatch<SetUserProfileActionType>) => {
     usersAPI.getProfile(userId)
     .then(response => {
         dispatch(setUserProfile(response.data));

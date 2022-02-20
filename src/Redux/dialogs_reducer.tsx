@@ -1,3 +1,5 @@
+import { v1 } from "uuid"
+
 /* export type UpdateNewMessageTextType = {
     type: 'dialogs/UPDATE-NEW-MESSAGE-TEXT'
     newMessage: string
@@ -8,7 +10,7 @@ export type SendMessageType = {
 }
 export type DeleteMessageType = {
     type: typeof DELETE_MESSAGE
-    messageId: number
+    messageId: string
 }
 
 export const UPDATE_NEW_MESSAGE_TEXT = 'dialogs/UPDATE-NEW-MESSAGE-TEXT'
@@ -16,7 +18,7 @@ export const SEND_MESSAGE = 'dialogs/SEND-MESSAGE'
 export const DELETE_MESSAGE = 'dialogs/DELETE-MESSAGE'
 
 export type MessageType = {
-    id: number
+    id: string
     message: string
 }
 export type DialogsType = {
@@ -38,11 +40,11 @@ let initialState = {
         { id: 5, name: "Igor" }
     ] as Array<DialogsType>,
     messages: [
-        { id: 1, message: "Hi!" },
-        { id: 2, message: "Hello my frieds!" },
-        { id: 3, message: "Go Dota?" },
-        { id: 4, message: "Yes!" },
-        { id: 5, message: "La-la-la" }
+        { id: v1(), message: "Hi!" },
+        { id: v1(), message: "Hello my frieds!" },
+        { id: v1(), message: "Go Dota?" },
+        { id: v1(), message: "Yes!" },
+        { id: v1(), message: "La-la-la" }
     ] as Array<MessageType>,
     newMessageText: 'it-kamasutra.com'
 }
@@ -61,7 +63,7 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: D
             let text = action.newMessageText
             return {
                 ...state,
-                messages: [...state.messages, { id: 6, message: text }],
+                messages: [...state.messages, { id: v1(), message: text }],
             };
         case DELETE_MESSAGE:
             return {
@@ -74,6 +76,6 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: D
 }
 
 export const sendMessageAC = (newMessageText: string): SendMessageType => ({ type: SEND_MESSAGE, newMessageText })
-export const deleteMessageAC = (messageId: number): DeleteMessageType => ({ type: DELETE_MESSAGE, messageId })
+export const deleteMessageAC = (messageId: string): DeleteMessageType => ({ type: DELETE_MESSAGE, messageId })
 
 export default dialogsReducer;
