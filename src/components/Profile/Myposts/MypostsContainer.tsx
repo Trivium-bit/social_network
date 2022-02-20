@@ -12,7 +12,6 @@ export type PostsType = {
 type MyPostsPropsType = {
     posts: Array<PostsType>
     newPostText: string
-    postId: number
 }
 
 type MapDispatchPropsType = {
@@ -23,8 +22,7 @@ type MapDispatchPropsType = {
 let mapStateToProps = (state: AppStateType): MyPostsPropsType => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText,
-        postId: state.profilePage.posts.
+        newPostText: state.profilePage.newPostText
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch<any>): MapDispatchPropsType => {

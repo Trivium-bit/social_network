@@ -3,7 +3,7 @@ import classes from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 import { DialogPageType } from '../../Redux/dialogs_reducer'
-import { AddMessageForm } from './AddMessageForm'
+import { AddMessageForm, AddMessageReduxForm } from './AddMessageForm'
 
 type PropsType = {
     sendMessage: (newMessageText: string) => void
@@ -42,7 +42,7 @@ const Dialogs = (props: PropsType) => {
 
                 </div>
             </div>
-            <AddMessageForm onSubmit={addNewMessage} />
+            <AddMessageReduxForm onSubmit={addNewMessage} />
         </div>
     )
 }
