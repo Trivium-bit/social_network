@@ -19,7 +19,7 @@ const Post = (props: PostsType) => {
         <div className={classes.post}>
             <img alt="avatar" src="https://shutniki.club/wp-content/uploads/2019/12/v1-babay29.png" />
             {props.message}
-            <button onClick={() => {dispatch(deletePostAC(props.id))}}> X </button>
+            <button className={classes.button} onClick={() => {dispatch(deletePostAC(props.id))}}> X </button>
             <div>like {props.likesCount}</div>
         </div>
     )
