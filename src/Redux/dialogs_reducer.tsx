@@ -52,7 +52,6 @@ let initialState = {
 export type InitialStateType = typeof initialState
 export type DialogActionsType = SendMessageType | DeleteMessageType
 export const dialogsReducer = (state: InitialStateType = initialState, action: DialogActionsType): InitialStateType => {
-
     switch (action.type) {
         /*  case UPDATE_NEW_MESSAGE_TEXT:
              return {

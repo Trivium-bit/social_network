@@ -61,7 +61,7 @@ export const profileInitialState: ProfilePageType = {
         fullName: 'string'
     },
     status: 'string'
-    
+
 }
 
 export type ProfileActionsType = AddPostActionType | SetUserProfileActionType | SetStatusActionType | DeletePostActionCreator
@@ -118,27 +118,21 @@ export const setStatus = (status: string): SetStatusActionType => ({
 });
 
 
-export const getStatus = (userId: number) => (dispatch: Dispatch<SetStatusActionType>) => {
-    profileAPI.getStatus(userId)
-    .then(response => {
-        dispatch(setStatus(response.data));
-    })
+export const getStatus = (userId: number) => async (dispatch: Dispatch<SetStatusActionType>) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(setStatus(response.data));
 }
 
-export const updateStatus = (status: string) => (dispatch: Dispatch<SetStatusActionType>) => {
-    profileAPI.updateStatus(status)
-    .then(response => {
-        if (response.data.resultCode === 0) {
+export const updateStatus = (status: string) => async (dispatch: Dispatch<SetStatusActionType>) => {
+    let response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
         dispatch(setStatus(status));
-        }
-    })
+    }
 }
 
-export const getUserProfile = (userId: number) => (dispatch: Dispatch<SetUserProfileActionType>) => {
-    usersAPI.getProfile(userId)
-    .then(response => {
-        dispatch(setUserProfile(response.data));
-    })
+export const getUserProfile = (userId: number) => async (dispatch: Dispatch<SetUserProfileActionType>) => {
+    let response = await usersAPI.getProfile(userId)
+    dispatch(setUserProfile(response.data));
 }
 
 export default profileReducer;

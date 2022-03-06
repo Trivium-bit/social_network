@@ -10,7 +10,6 @@ export type InitializedSuccessActionType = {
     type: typeof INITIALIZED_SUCCESS
 }
 
-
 let initialState: InitializedType = {
     initialized: false
 }
