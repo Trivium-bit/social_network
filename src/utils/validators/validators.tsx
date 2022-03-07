@@ -1,4 +1,3 @@
-
 type Validators = (value: string) => string | undefined
 
 export const required: Validators = value => {

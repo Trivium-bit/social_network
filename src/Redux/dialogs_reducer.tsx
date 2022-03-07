@@ -4,6 +4,7 @@ import { v1 } from "uuid"
     type: 'dialogs/UPDATE-NEW-MESSAGE-TEXT'
     newMessage: string
 } */
+
 export type SendMessageType = {
     type: typeof SEND_MESSAGE
     newMessageText: string

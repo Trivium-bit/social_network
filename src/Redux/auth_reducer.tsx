@@ -1,8 +1,6 @@
 import { authAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
 import { Dispatch } from "redux";
-import { withAuthRedirect } from "../hoc/withAuthRedirect";
-import { Component } from "react";
 
 const SET_USER_DATA = 'auth/SET_USER_DATA';
 

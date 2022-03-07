@@ -1,3 +1,4 @@
+import { v1 } from 'uuid';
 import {InitialStateType, DialogsType, MessageType, sendMessageAC, deleteMessageAC, dialogsReducer} from './dialogs_reducer'
 
 let state: InitialStateType = {
@@ -9,11 +10,11 @@ let state: InitialStateType = {
         { id: 5, name: "Igor" }
     ] as Array<DialogsType>,
     messages: [
-        { id: 1, message: "Hi!" },
-        { id: 2, message: "Hello my frieds!" },
-        { id: 3, message: "Go Dota?" },
-        { id: 4, message: "Yes!" },
-        { id: 5, message: "La-la-la" }
+        { id: v1(), message: "Hi!" },
+        { id: v1(), message: "Hello my frieds!" },
+        { id: v1(), message: "Go Dota?" },
+        { id: v1(), message: "Yes!" },
+        { id: v1(), message: "La-la-la" }
     ] as Array<MessageType>,
     newMessageText: 'it-kamasutra.com'
 };
@@ -30,7 +31,7 @@ test('message should be incremented', () => {
     expect(newState.messages[5].message).toBe("Matrix");
 });
 test('after deleting length of messages should be decrement', () => {
-    let action = deleteMessageAC(3);
+    let action = deleteMessageAC(v1());
     let newState = dialogsReducer(state, action);
     expect(newState.messages.length).toBe(4);
 });

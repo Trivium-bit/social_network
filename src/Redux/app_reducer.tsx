@@ -1,4 +1,3 @@
-import { Dispatch } from "redux";
 import { getAuthUserData } from "./auth_reducer";
 
 const INITIALIZED_SUCCESS = 'app/INITIALIZED_SUCCESS';
