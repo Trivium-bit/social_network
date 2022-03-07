@@ -1,8 +1,12 @@
 import { UsersType } from "../Redux/users-reducer";
 
-export let updateObjectInArray = (items: UsersType[], itemId: number, objPropName: number, newObjProps: {followed: true}) => {
+interface IFilters {
+    map(arg0: (u: any) => any): UsersType[];
+  }
+
+export let updateObjectInArray = (items: IFilters, itemId: number, objPropName: string, newObjProps: {followed: boolean}) => {
     return items.map(u => {
-        if (u [objPropName] === itemId) {
+        if (u[objPropName] === itemId) {
             return { ...u, ...newObjProps}
         }
         return u;

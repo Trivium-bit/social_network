@@ -1,5 +1,6 @@
 import { Dispatch } from "react";
 import { usersAPI } from "../api/api";
+import { updateObjectInArray } from "../utils/object-helper";
 
 export type LocationType = {
     city: string
@@ -83,22 +84,24 @@ const usersReducer = (state: InitialStateType = initialState, action: UsersActio
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => {
+                users: updateObjectInArray(state.users, action.userId, "id", {followed: true })
+              /*   users: state.users.map(u => {
                     if (u.id === action.userId) {
                         return { ...u, followed: true }
                     }
                     return u;
-                })
+                }) */
             }
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => {
+                users: updateObjectInArray(state.users, action.userId, "id", {followed: false })
+              /*   users: state.users.map(u => {
                     if (u.id === action.userId) {
                         return { ...u, followed: false }
                     }
                     return u;
-                })
+                }) */
             }
         case SET_USERS:
             return {
