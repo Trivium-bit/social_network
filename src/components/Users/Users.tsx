@@ -3,6 +3,8 @@ import styles from './users.module.css';
 import { setUsers, UsersType } from "../../Redux/users-reducer";
 import default_ava from '../../assets/images/default_ava.jpg'
 import axios from 'axios';
+import Paginator from '../common/Paginator/Paginator';
+
 
 type PropsType = {
     totalUsersCount: number
@@ -17,32 +19,25 @@ type PropsType = {
     setUsers: (users: Array<UsersType>) => void
 }
 
-let Users = (props: PropsType) => {
+let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, users, ...props}: PropsType) => {
 
-    if(props.users.length === 0) {
+    if(users.length === 0) {
         axios.get("https://social-network.samuraijs.com/api/1.0/users")
         .then(response => {
             props.setUsers(response.data.items);
         });
     }
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pagesCount = Math.ceil(totalUsersCount / pageSize);
 
     let pages = [];
     for (let i = 0; i <= pagesCount; i++) {
         pages.push(i);
     }
     return <div>
-        <div>
-            {pages.map(p => {
-                return <span className={props.currentPage === p ? styles.selectedPage : ''}
-                    onClick={() => {
-                        props.onPageChanged(p)
-                    }}>{p}</span>
-            })}
-        </div>
+        <Paginator currentPage={currentPage} totalUsersCount={totalUsersCount} pageSize={pageSize} onPageChanged={onPageChanged}/>
         {
-            props.users.map((u: any) => <div key={u.id}>
+            users.map((u: any) => <div key={u.id}>
                 <span>
                     <div>
                         <img src={u.photos.small !== null ? u.photos.small : default_ava} alt={"avatar"}
