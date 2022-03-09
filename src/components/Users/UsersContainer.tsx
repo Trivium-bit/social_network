@@ -14,9 +14,8 @@ import { UsersType } from "./../../Redux/users-reducer"
 import { AppStateType } from './../../Redux/redux-store'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader';
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from 'redux';
-import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers} from '../../Redux/users-selectors';
+import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../Redux/users-selectors';
 
 type MapStateToPropsType = {
     totalUsersCount: number
@@ -92,7 +91,6 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {
-        // рефакторим mapDispatchToProps (сокращаем код)
         follow,
         unfollow,
         setUsers,
@@ -101,5 +99,4 @@ export default compose<React.ComponentType>(
         toggleFollowingProgress,
         requestUsers
     }),
-    // withAuthRedirect
 )(UsersContainer)
