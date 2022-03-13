@@ -7,10 +7,10 @@ import {BrowserRouter, Route, withRouter} from "react-router-dom"
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer"
 import Login from "./components/Login/Login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./Redux/app_reducer";
-import {AppStateType} from "./Redux/redux-store";
+import store, {AppStateType} from "./Redux/redux-store";
 import Preloader from "./components/common/Preloader/Preloader";
 
 type MapStateToPropsType = {
@@ -51,5 +51,15 @@ const mapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized
 })
 
-export default compose<React.ComponentType>(withRouter, connect(mapStateToProps, {initializeApp}))(App);
+let AppContainer = compose<React.ComponentType>(withRouter, connect(mapStateToProps, {initializeApp}))(App);
+
+const SamuraiJSApp = () => {
+    return <BrowserRouter>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+    </BrowserRouter>
+}
+
+export default SamuraiJSApp
 
