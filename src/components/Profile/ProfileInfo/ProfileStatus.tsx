@@ -1,11 +1,10 @@
 import React from 'react';
-import { ChangeEvent } from 'react';
 
 type StatusProsType = {
     status: string
     updateStatus: (status: string) => void
-
 }
+
 class ProfileStatus extends React.Component<StatusProsType> {
     state = {
         editMode: false,
