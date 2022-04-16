@@ -1,10 +1,6 @@
-import React from 'react';
 import styles from './users.module.css';
-import { setUsers, UsersType } from "../../Redux/users-reducer";
+import { UsersType } from "../../Redux/users-reducer";
 import default_ava from '../../assets/images/default_ava.jpg'
-import axios from 'axios';
-import Paginator from '../common/Paginator/Paginator';
-
 
 type PropsType = {
     user: UsersType

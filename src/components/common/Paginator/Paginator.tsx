@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import classNames from 'classnames';
+import { useState } from 'react';
 import styles from './paginator.module.css';
-import { setUsers, UsersType } from "../../../Redux/users-reducer";
-import default_ava from '../../assets/images/default_ava.jpg'
-import axios from 'axios';
+import cn from "classnames";
+
 
 type PropsType = {
     totalItemsCount: number

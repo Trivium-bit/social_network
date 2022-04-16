@@ -3,7 +3,7 @@ import Paginator from '../common/Paginator/Paginator';
 import User from './User';
 
 type PropsType = {
-    totalUsersCount: number
+    totalItemsCount: number
     pageSize: number
     currentPage: number
     isFetching: boolean
@@ -15,9 +15,9 @@ type PropsType = {
     setUsers: (users: Array<UsersType>) => void
 }
 
-let Users = ({ currentPage, totalUsersCount, pageSize, onPageChanged, users, ...props }: PropsType) => {
+let Users = ({ currentPage, totalItemsCount, pageSize, onPageChanged, users, ...props }: PropsType) => {
     return <div>
-        <Paginator currentPage={currentPage} totalUsersCount={totalUsersCount} pageSize={pageSize} onPageChanged={onPageChanged} />
+        <Paginator currentPage={currentPage} totalItemsCount={totalItemsCount} pageSize={pageSize} onPageChanged={onPageChanged} portionSize={10} />
         <div>
             {
                 users.map((u: any) =>
