@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { useState } from 'react';
 import styles from './paginator.module.css';
 import cn from "classnames";
