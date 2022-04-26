@@ -33,7 +33,7 @@ export const Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChange
                     key={p}
                     onClick={(e) => {
                         onPageChanged(p)
-                    }}>{p}</span>
+                    }}> {p} </span>
             })}
         {portionCount > portionNumber &&
             <button onClick={() => { setPortionNumber(portionNumber + 1) }}>next</button>}
