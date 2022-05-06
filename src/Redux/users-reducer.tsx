@@ -169,8 +169,6 @@ const followUnfollowFlow = async (dispatch: Dispatch<any>, userId: number, apiMe
     dispatch(toggleFollowingProgress(false, userId));
 }
 
-
-
 export const follow = (userId: number) => {
     return async (dispatch: any) => {
         followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess);
