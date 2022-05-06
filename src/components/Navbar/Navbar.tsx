@@ -1,12 +1,13 @@
-import React from 'react';
 import {NavLink} from 'react-router-dom';
 import classes from './Navbar.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const Navbar = () => {
     return (
         <nav className={classes.nav}>
             <div className={`${classes.item} ${classes.active}`}>
-                <NavLink to="/profile" activeClassName={classes.activeLink}>Profile</NavLink>
+            <FontAwesomeIcon icon={['fal', 'home']} fixedWidth /><NavLink to="/profile" activeClassName={classes.activeLink}> Profile</NavLink>
             </div>
             <div className={`${classes.item} ${classes.active}`}>
                 <NavLink to="/dialogs" activeClassName={classes.activeLink}>Messages</NavLink>

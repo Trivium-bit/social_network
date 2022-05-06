@@ -10,9 +10,7 @@ import { compose } from "redux";
 import { initializeApp } from "./Redux/app_reducer";
 import store, { AppStateType } from "./Redux/redux-store";
 import Preloader from "./components/common/Preloader/Preloader";
-
-//import DialogsContainer from "./components/Dialogs/DialogsContainer";
-//import UsersContainer from "./components/Users/UsersContainer"
+import s from "./AppWrapper.module.css";
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
@@ -37,10 +35,17 @@ class App extends React.Component<InitialPropsType> {
         }
         return (
             <BrowserRouter>
-                <div className="app-wrapper">
-                    <HeaderContainer />
-                    <Navbar />
-                    <div className="app-wrapper-content">
+                <div className={s.appWrapper}>
+                    <div className={s.header}>
+                        <HeaderContainer />
+                    </div>
+
+                    <div className={s.content}>
+                    <div className={s.navbar}>
+                        <Navbar />
+                    </div>
+
+                    <div className={s.main}>
                         <Route path="/login" render={() => <Login />} />
                         <Route path="/profile" render={() => <ProfileContainer />} />
                         <Suspense fallback={<Preloader />}>
@@ -48,8 +53,11 @@ class App extends React.Component<InitialPropsType> {
                             <Route path="/users" render={() => <UsersContainer />} />
                         </Suspense>
                     </div>
+                   
+                 
                 </div>
-            </BrowserRouter>);
+            </div>
+            </BrowserRouter >);
     }
 }
 
