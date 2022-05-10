@@ -1,15 +1,8 @@
-.content {
-
-}
 .discriptionBlock {
     padding: 10px;
-   
 }
 
-.img {
-    width: 100px;
-    height: 85px;
-    border-radius: 50%  
+.ava {
+    width: 15vw;
+    border-radius: 50%
 }
-
-

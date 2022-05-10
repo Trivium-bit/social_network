@@ -58,7 +58,11 @@ export const profileInitialState: ProfilePageType = {
         id: 'string',
         lookingForAJob: false,
         lookingForAJobDescription: 'string',
-        fullName: 'string'
+        fullName: 'string',
+        photos: {
+            small: 'string',
+            large: 'string' 
+          },
     },
     status: 'string'
 
@@ -117,7 +121,6 @@ export const setStatus = (status: string): SetStatusActionType => ({
     type: SET_STATUS, status
 });
 
-
 export const getStatus = (userId: number) => async (dispatch: Dispatch<SetStatusActionType>) => {
     let response = await profileAPI.getStatus(userId)
     dispatch(setStatus(response.data));
@@ -131,6 +134,7 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch<SetSta
 }
 
 export const getUserProfile = (userId: number) => async (dispatch: Dispatch<SetUserProfileActionType>) => {
+    debugger
     let response = await usersAPI.getProfile(userId)
     dispatch(setUserProfile(response.data));
 }
