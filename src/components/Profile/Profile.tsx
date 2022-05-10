@@ -8,13 +8,14 @@ type PropsType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
+    isOwner: boolean
 }
 
 const Profile:React.FC<PropsType> = (props) => {
 
     return (
         <div>
-            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileInfo isOwner={props.isOwner} profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
             <MyPostContainer/>
         </div>
     )
