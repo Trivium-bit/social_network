@@ -27,7 +27,6 @@
 }
 
 .item a:hover {
-	color: #F46119;
+   color: #F46119;
    background: rgba(244, 97, 25, 0.05);
-
 }
