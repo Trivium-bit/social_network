@@ -1,23 +1,26 @@
+import { ProfileType } from '../../../Redux/profile_reducer';
 import Preloader from '../../common/Preloader/Preloader';
 import classes from './ProfileInfo.module.css';
-import { ProfileType } from './../ProfileContainer'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
-import { ChangeEventHandler } from 'react';
 
 type PropsType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean
+    savePhoto: ({}) => void
 }
 
-const ProfileInfo = ({ profile, status, updateStatus, isOwner }: PropsType) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }: PropsType) => {
     if (!profile) {
         return <Preloader />
     }
 
-    const onMainPhotoSelected = (e: ChangeEventHandler<HTMLInputElement>) => {
-        e.currentTarget.files[0]
+    const onMainPhotoSelected = (e: any) => {
+        if( e.target.files.length) {
+            savePhoto(e.target.files[0])
+        }
+       
     }
 
     return (

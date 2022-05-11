@@ -1,36 +1,6 @@
 import { Dispatch } from "redux";
 import { usersAPI, profileAPI } from "../api/api";
-import { ProfileType } from "../components/Profile/ProfileContainer";
 import { AppActionsType } from "./redux-store";
-
-export type PostsType = {
-    id: number
-    message: string
-    likesCount: number
-}
-export type AddPostActionType = {
-    type: typeof ADD_POST
-    newPostText: string
-}
-export type DeletePostActionCreator = {
-    type: typeof DELETE_POST
-    postId: number
-}
-/* 
-export type UpdateNewPostTextActionType = {
-    type: typeof UPDATE_NEW_POST_TEXT
-    newText: string
-} */
-
-export type SetStatusActionType = {
-    type: typeof SET_STATUS
-    status: string
-}
-
-export type SetUserProfileActionType = {
-    type: typeof SET_USER_PROFILE
-    profile: ProfileType
-}
 
 export type ProfilePageType = {
     posts: Array<PostsType>
@@ -38,13 +8,22 @@ export type ProfilePageType = {
     profile: ProfileType
     status: string
 }
-
-const ADD_POST = 'profile/ADD-POST';
-/* const UPDATE_NEW_POST_TEXT = 'profile/UPDATE-NEW-POST-TEXT'; */
-const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
-const SET_STATUS = 'profile/SET_STATUS';
-const DELETE_POST = 'profile/DELETE_POST'
-
+export type ProfileType = {
+    id: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    photos: PhotoType
+}
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
+export type PhotoType = {
+    small: string
+    large: string
+}
 
 export const profileInitialState: ProfilePageType = {
     posts: [
@@ -61,14 +40,13 @@ export const profileInitialState: ProfilePageType = {
         fullName: 'string',
         photos: {
             small: 'string',
-            large: 'string' 
-          },
+            large: 'string'
+        },
     },
     status: 'string'
-
 }
 
-export type ProfileActionsType = AddPostActionType | SetUserProfileActionType | SetStatusActionType | DeletePostActionCreator
+export type ProfileActionsType = AddPostActionType | SetUserProfileActionType | SetStatusActionType | DeletePostActionCreator | SavePhotoSuccessActionType
 
 export const profileReducer = (state: ProfilePageType = profileInitialState, action: AppActionsType): ProfilePageType => {
     switch (action.type) {
@@ -100,27 +78,23 @@ export const profileReducer = (state: ProfilePageType = profileInitialState, act
         case SET_USER_PROFILE: {
             return { ...state, profile: action.profile };
         }
+        case SAVE_PHOTO_SUCCESS: {
+            return { ...state, profile: { ...state.profile, photos: action.photos } };
+        }
         default:
             return state;
     }
 }
 
-export const addPostActionCreator = (newPostText: string): AddPostActionType => ({
-    type: ADD_POST, newPostText
-});
-export const deletePostAC = (postId: number): DeletePostActionCreator => ({
-    type: DELETE_POST, postId
-})
-/* export const updateNewPostTextActionCreator = (newPostText: string): UpdateNewPostTextActionType => ({
-    type: UPDATE_NEW_POST_TEXT, newText: newPostText
-}); */
-export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({
-    type: SET_USER_PROFILE, profile
-});
-export const setStatus = (status: string): SetStatusActionType => ({
-    type: SET_STATUS, status
-});
+//ActionCreators
+export const addPostActionCreator = (newPostText: string): AddPostActionType => ({ type: ADD_POST, newPostText });
+export const deletePostAC = (postId: number): DeletePostActionCreator => ({ type: DELETE_POST, postId })
+/* export const updateNewPostTextActionCreator = (newPostText: string): UpdateNewPostTextActionType => ({type: UPDATE_NEW_POST_TEXT, newText: newPostText}); */
+export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({ type: SET_USER_PROFILE, profile });
+export const setStatus = (status: string): SetStatusActionType => ({ type: SET_STATUS, status });
+export const savePhotoSuccessAC = (photos: PhotoType): SavePhotoSuccessActionType => ({ type: SAVE_PHOTO_SUCCESS, photos });
 
+//Thunks
 export const getStatus = (userId: number) => async (dispatch: Dispatch<SetStatusActionType>) => {
     let response = await profileAPI.getStatus(userId)
     dispatch(setStatus(response.data));
@@ -138,5 +112,45 @@ export const getUserProfile = (userId: number) => async (dispatch: Dispatch<SetU
     let response = await usersAPI.getProfile(userId)
     dispatch(setUserProfile(response.data));
 }
+
+export const savePhoto = (file) => async (dispatch: Dispatch<SavePhotoSuccessActionType>) => {
+    let response = await profileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccessAC(response.data.photos));
+    }
+}
+
+export type AddPostActionType = {
+    type: typeof ADD_POST
+    newPostText: string
+}
+export type DeletePostActionCreator = {
+    type: typeof DELETE_POST
+    postId: number
+}
+/* 
+export type UpdateNewPostTextActionType = {
+    type: typeof UPDATE_NEW_POST_TEXT
+    newText: string
+} */
+export type SetStatusActionType = {
+    type: typeof SET_STATUS
+    status: string
+}
+export type SetUserProfileActionType = {
+    type: typeof SET_USER_PROFILE
+    profile: ProfileType
+}
+export type SavePhotoSuccessActionType = {
+    type: typeof SAVE_PHOTO_SUCCESS
+    photos: PhotoType
+}
+
+const ADD_POST = 'profile/ADD-POST';
+/* const UPDATE_NEW_POST_TEXT = 'profile/UPDATE-NEW-POST-TEXT'; */
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_STATUS = 'profile/SET_STATUS';
+const DELETE_POST = 'profile/DELETE_POST'
+const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
 
 export default profileReducer;
