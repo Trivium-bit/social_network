@@ -113,10 +113,10 @@ export const getUserProfile = (userId: number) => async (dispatch: Dispatch<SetU
     dispatch(setUserProfile(response.data));
 }
 
-export const savePhoto = (file) => async (dispatch: Dispatch<SavePhotoSuccessActionType>) => {
+export const savePhoto = (file: any) => async (dispatch: Dispatch<SavePhotoSuccessActionType>) => {
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccessAC(response.data.photos));
+        dispatch(savePhotoSuccessAC(response.data.data.photos));
     }
 }
 

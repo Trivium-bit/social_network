@@ -11,7 +11,7 @@ type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
     getStatus: (userId: number) => void
     updateStatus: (status: string) => void
-    savePhoto: ({ }) => void
+    savePhoto: () => void
 }
 
 type MapStateToPropsType = {
@@ -69,7 +69,7 @@ let mapStateToProps = (state: AppStateType) => ({
 export default withAuthRedirect(connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent)) */
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto}),
+    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto }),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)
