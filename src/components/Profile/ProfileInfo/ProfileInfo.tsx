@@ -8,7 +8,7 @@ type PropsType = {
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean
-    savePhoto: ({}) => void
+    savePhoto: ({ }) => void
 }
 
 const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }: PropsType) => {
@@ -17,12 +17,12 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }: Prop
     }
 
     const onMainPhotoSelected = (e: any) => {
-        if( e.target.files.length) {
+        if (e.target.files.length) {
             savePhoto(e.target.files[0])
         }
-       
-    }
 
+    }
+    debugger
     return (
         <div className={classes.content}>
             <div className={classes.discriptionBlock}>

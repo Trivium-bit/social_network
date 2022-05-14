@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import { AppStateType } from "../../Redux/redux-store";
-import { getUserProfile, getStatus, updateStatus, PhotoType, ProfileType, savePhoto } from "../../Redux/profile_reducer";
+import { getUserProfile, getStatus, updateStatus, ProfileType, savePhoto } from "../../Redux/profile_reducer";
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
@@ -38,6 +38,7 @@ class ProfileContainer extends React.Component<ProfileContainerProsType> {
     }
 
     componentDidMount() {
+        debugger
         this.refreshProfile()
     }
     componentDidUpdate(props: MapStateToPropsType) {

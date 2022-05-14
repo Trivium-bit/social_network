@@ -59,9 +59,7 @@ export const profileReducer = (state: ProfilePageType = profileInitialState, act
             };
         }
         case DELETE_POST: {
-            return {
-                ...state, posts: state.posts.filter(p => p.id != action.postId)
-            }
+            return { ...state, posts: state.posts.filter(p => p.id != action.postId) }
         }
         /* case UPDATE_NEW_POST_TEXT: {
             return {
@@ -70,10 +68,7 @@ export const profileReducer = (state: ProfilePageType = profileInitialState, act
             };
         } */
         case SET_STATUS: {
-            return {
-                ...state,
-                status: action.status
-            };
+            return { ...state, status: action.status };
         }
         case SET_USER_PROFILE: {
             return { ...state, profile: action.profile };
@@ -90,7 +85,7 @@ export const profileReducer = (state: ProfilePageType = profileInitialState, act
 export const addPostActionCreator = (newPostText: string): AddPostActionType => ({ type: ADD_POST, newPostText });
 export const deletePostAC = (postId: number): DeletePostActionCreator => ({ type: DELETE_POST, postId })
 /* export const updateNewPostTextActionCreator = (newPostText: string): UpdateNewPostTextActionType => ({type: UPDATE_NEW_POST_TEXT, newText: newPostText}); */
-export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({ type: SET_USER_PROFILE, profile });
+export const setUserProfileAC = (profile: ProfileType): SetUserProfileActionType => ({ type: SET_USER_PROFILE, profile });
 export const setStatus = (status: string): SetStatusActionType => ({ type: SET_STATUS, status });
 export const savePhotoSuccessAC = (photos: PhotoType): SavePhotoSuccessActionType => ({ type: SAVE_PHOTO_SUCCESS, photos });
 
@@ -110,7 +105,7 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch<SetSta
 export const getUserProfile = (userId: number) => async (dispatch: Dispatch<SetUserProfileActionType>) => {
     debugger
     let response = await usersAPI.getProfile(userId)
-    dispatch(setUserProfile(response.data));
+    dispatch(setUserProfileAC(response.data));
 }
 
 export const savePhoto = (file: any) => async (dispatch: Dispatch<SavePhotoSuccessActionType>) => {

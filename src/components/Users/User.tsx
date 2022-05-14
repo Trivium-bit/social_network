@@ -1,6 +1,7 @@
 import styles from './users.module.css';
 import { UsersType } from "../../Redux/users-reducer";
 import default_ava from '../../assets/images/default_ava.jpg'
+import { NavLink } from 'react-router-dom';
 
 type PropsType = {
     user: UsersType
@@ -13,12 +14,10 @@ let User = ({ user, followingInProgress, follow, unfollow }: PropsType) => {
 
     return (
         <div>
-            <span>
-                <div>
-                    <img src={user.photos.small !== null ? user.photos.small : default_ava} alt={"avatar"}
-                        className={styles.userPhoto} />
-                </div>
-            </span>
+            <NavLink to={"/profile/" + user.id}>
+                <img src={user.photos.small != null ? user.photos.small : default_ava} alt={"avatar"}
+                    className={styles.userPhoto} />
+            </NavLink>
             <span>
                 <div>
                     {user.followed
