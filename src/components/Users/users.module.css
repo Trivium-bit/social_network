@@ -4,4 +4,6 @@
     cursor: pointer;
     border-radius: 50%
 }
-
+.userPhoto:hover {
+    cursor: pointer;
+}

@@ -14,6 +14,7 @@ export type ProfileType = {
     lookingForAJobDescription: string
     fullName: string
     photos: PhotoType
+    abotMe: string
 }
 export type PostsType = {
     id: number
@@ -42,6 +43,7 @@ export const profileInitialState: ProfilePageType = {
             small: 'string',
             large: 'string'
         },
+        abotMe: 'string',
     },
     status: 'string'
 }
