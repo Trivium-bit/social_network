@@ -2,7 +2,11 @@ import { Dispatch } from "redux";
 import { usersAPI, profileAPI } from "../api/api";
 import { AppActionsType } from "./redux-store";
 
-export type ContactsType = {
+interface ContactsObjectKeys {
+    [key: string]: string
+}
+
+interface ContactsType extends ContactsObjectKeys {
     github: string
     vk: string
     facebook: string

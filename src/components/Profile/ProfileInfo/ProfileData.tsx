@@ -4,32 +4,35 @@ import Contact from "./Contacts"
 type ProfileData = {
     profile: ProfileType
     isOwner: boolean
-    goToEditMode: boolean
+    goToEditMode: () => void
 }
 
 const ProfileData = (props: ProfileData) => {
-    return <div>
-        {props.isOwner && <div><button onClick={props.goToEditMode}>edit</button></div>}
+    
+    return (
         <div>
-            <b>Full name</b> : {props.profile.fullName ? "yes" : "no"}
-        </div>
-        <div>
-            <b>Looking for a job</b> : {props.profile.lookingForAJob ? "yes" : "no"}
-        </div>
-        {props.profile.lookingForAJob &&
+            {props.isOwner && <div><button onClick={props.goToEditMode}>edit</button></div>}
             <div>
-                <b>My professional skills</b> : {props.profile.lookingForAJobDescription}
+                <b>Full name</b> : {props.profile.fullName ? "yes" : "no"}
             </div>
-        }
-        <div>
-            <b>About me</b> : {props.profile.abotMe}
+            <div>
+                <b>Looking for a job</b> : {props.profile.lookingForAJob ? "yes" : "no"}
+            </div>
+            {props.profile.lookingForAJob &&
+                <div>
+                    <b>My professional skills</b> : {props.profile.lookingForAJobDescription}
+                </div>
+            }
+            <div>
+                <b>About me</b> : {props.profile.abotMe}
+            </div>
+            <div>
+                <b>Contacts</b> : {Object.keys(props.profile.contacts).map((key: string) => {
+                    return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
+                })}
+            </div>
         </div>
-        <div>
-            <b>Contacts</b> : {Object.keys(props.profile.contacts).map(key => {
-                return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
-            })}
-        </div>
-    </div>
+    )
 }
 
 export default ProfileData;

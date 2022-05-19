@@ -3,8 +3,8 @@ type ContactsPropsType = {
     contactValue: string
 }
 
-const Contact = ({ contactTitle, contactValue }: ContactsPropsType) => {
-    return <div><b>{contactTitle}</b>: {contactValue}</div>
+const Contact = (props: ContactsPropsType) => {
+    return <div><b>{props.contactTitle}</b>: {props.contactValue}</div>
 }
 
 export default Contact;
