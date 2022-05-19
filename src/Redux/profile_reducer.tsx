@@ -2,6 +2,17 @@ import { Dispatch } from "redux";
 import { usersAPI, profileAPI } from "../api/api";
 import { AppActionsType } from "./redux-store";
 
+export type ContactsType = {
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+}
+
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
@@ -15,6 +26,7 @@ export type ProfileType = {
     fullName: string
     photos: PhotoType
     abotMe: string
+    contacts: ContactsType
 }
 export type PostsType = {
     id: number
@@ -44,6 +56,16 @@ export const profileInitialState: ProfilePageType = {
             large: 'string'
         },
         abotMe: 'string',
+        contacts: {
+            github: 'string',
+            vk: 'string',
+            facebook: 'string',
+            instagram: 'string',
+            twitter: 'string',
+            website: 'string',
+            youtube: 'string',
+            mainLink: 'string',
+        },
     },
     status: 'string'
 }
