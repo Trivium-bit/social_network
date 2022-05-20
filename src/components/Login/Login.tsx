@@ -18,16 +18,6 @@ type FormDataType = {
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({ handleSubmit, error }) => {
     return (
         <form onSubmit={handleSubmit}>
-{/*             <div>
-                <Field placeholder={"email"} name={"email"} component={Input} validate={[required]} />
-            </div>
-            <div>
-                <Field type={"password"} placeholder={"password"} name={"password"} component={Input}
-                    validate={[required]} />
-            </div>
-            <div>
-                <Field component={Input} name={"remember me"} type={"checkbox"} /> remember me
-            </div> */}
             {createField("Email", "email", [required], Input)}
             {createField("Password", "password", [required], Input, { type: "password" })}
             {createField(null, "rememberMe", [], Input, { type: "checkbox" }, "rememberMe")}
