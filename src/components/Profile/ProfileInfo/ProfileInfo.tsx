@@ -26,7 +26,6 @@ const ProfileInfo = (props: PropsType) => {
         if (e.target.files.length) {
             props.savePhoto(e.target.files[0])
         }
-
     }
 
     return (
@@ -36,7 +35,11 @@ const ProfileInfo = (props: PropsType) => {
                 {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
                 <span>I love this game</span>
                 {editMode
-                    ? <ProfileDataForm goToEditMode={() => { setEditMode(true) }} profile={props.profile} isOwner={props.isOwner} />
+                    ? <ProfileDataForm
+/*                   goToEditMode={() => { setEditMode(true) }}
+                     rofile={props.profile}
+                     isOwner={props.isOwner}  */
+                     />
                     : <ProfileData goToEditMode={() => { setEditMode(true) }} profile={props.profile} isOwner={props.isOwner} />}
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
             </div>

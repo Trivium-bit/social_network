@@ -1,13 +1,13 @@
 import { ProfileType } from "../../../Redux/profile_reducer"
 import Contact from "./Contacts"
 
-type ProfileData = {
-    profile: ProfileType
+export type ProfileDataType = {
+     profile: ProfileType
     isOwner: boolean
     goToEditMode: () => void
 }
 
-const ProfileData = (props: ProfileData) => {
+const ProfileData = (props: ProfileDataType) => {
     
     return (
         <div>
