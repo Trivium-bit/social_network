@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
-import { Input } from "../common/FormsControls/FormsControls";
+import { createField, Input } from "../common/FormsControls/FormsControls";
 import { required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { loginTC } from "../../Redux/auth_reducer";
@@ -18,7 +18,7 @@ type FormDataType = {
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({ handleSubmit, error }) => {
     return (
         <form onSubmit={handleSubmit}>
-            <div>
+{/*             <div>
                 <Field placeholder={"email"} name={"email"} component={Input} validate={[required]} />
             </div>
             <div>
@@ -27,7 +27,10 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({ handleSubmit, er
             </div>
             <div>
                 <Field component={Input} name={"remember me"} type={"checkbox"} /> remember me
-            </div>
+            </div> */}
+            {createField("Email", "email", [required], Input)}
+            {createField("Password", "password", [required], Input, { type: "password" })}
+            {createField(null, "rememberMe", [], Input, { type: "checkbox" }, "rememberMe")}
             {error && <div className={style.formSummaryError}>
                 {error}
             </div>
