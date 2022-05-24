@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { ProfileType } from '../../../Redux/profile_reducer';
 import Preloader from '../../common/Preloader/Preloader';
+import { FormDataType } from '../../Login/Login';
 import ProfileData from './ProfileData';
-import ProfileDataForm from './ProfileDataForm';
+import ProfileDataFormReduxForm from './ProfileDataForm';
 import classes from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+
 
 type PropsType = {
     profile: ProfileType
@@ -12,6 +14,7 @@ type PropsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: ({ }) => void
+    saveProfile: (formData: FormDataType) => void
 }
 
 const ProfileInfo = (props: PropsType) => {
@@ -27,6 +30,9 @@ const ProfileInfo = (props: PropsType) => {
             props.savePhoto(e.target.files[0])
         }
     }
+    const onSubmit = (formData: FormDataType) => {
+        props.saveProfile(formData)
+    }
 
     return (
         <div className={classes.content}>
@@ -35,11 +41,7 @@ const ProfileInfo = (props: PropsType) => {
                 {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
                 <span>I love this game</span>
                 {editMode
-                    ? <ProfileDataForm
-/*                   goToEditMode={() => { setEditMode(true) }}
-                     rofile={props.profile}
-                     isOwner={props.isOwner}  */
-                     />
+                    ? <ProfileDataFormReduxForm onSubmit={onSubmit} profile={props.profile}                    />
                     : <ProfileData goToEditMode={() => { setEditMode(true) }} profile={props.profile} isOwner={props.isOwner} />}
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
             </div>

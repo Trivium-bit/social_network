@@ -2,18 +2,18 @@ import { ProfileType } from "../../../Redux/profile_reducer"
 import Contact from "./Contacts"
 
 export type ProfileDataType = {
-     profile: ProfileType
+    profile: ProfileType
     isOwner: boolean
     goToEditMode: () => void
 }
 
 const ProfileData = (props: ProfileDataType) => {
-    
+
     return (
         <div>
             {props.isOwner && <div><button onClick={props.goToEditMode}>edit</button></div>}
             <div>
-                <b>Full name</b> : {props.profile.fullName ? "yes" : "no"}
+                <b>Full name</b> : {props.profile.fullName}
             </div>
             <div>
                 <b>Looking for a job</b> : {props.profile.lookingForAJob ? "yes" : "no"}
@@ -24,7 +24,7 @@ const ProfileData = (props: ProfileDataType) => {
                 </div>
             }
             <div>
-                <b>About me</b> : {props.profile.abotMe}
+                <b>About me</b> : {props.profile.aboutMe}
             </div>
             <div>
                 <b>Contacts</b> : {Object.keys(props.profile.contacts).map((key: string) => {

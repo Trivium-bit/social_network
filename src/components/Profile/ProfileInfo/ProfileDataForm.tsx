@@ -1,11 +1,11 @@
-import { reduxForm } from "redux-form"
+import { InjectedFormProps, reduxForm } from "redux-form"
 import { createField, Input, Textarea } from "../../common/FormsControls/FormsControls"
 import { ProfileDataType } from "./ProfileData"
 
-export const ProfileDataForm = () => {
+export const ProfileDataForm: React.FC<InjectedFormProps> = ({handleSubmit, }) => {
     return (
-        <form>
-{/*             <div><button onClick={() => { props.goToEditMode }}>save</button></div> */}
+        <form onSubmit={handleSubmit}>
+            <div><button>save</button></div>
             <div>
                 <b>Full name</b> : {createField("Full name", "fullName", [], Input)}
             </div>
@@ -19,11 +19,6 @@ export const ProfileDataForm = () => {
             <div>
                 <b>About me</b> : {createField("About me", "aboutMee", [], Textarea)}
             </div>
-            {/*   <div>
-                <b>Contacts</b> : {Object.keys(props.profile.contacts).map(key => {
-                    return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
-                })}
-            </div> */}
         </form>
     )
 }

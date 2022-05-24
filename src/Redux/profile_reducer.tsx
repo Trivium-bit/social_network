@@ -29,7 +29,7 @@ export type ProfileType = {
     lookingForAJobDescription: string
     fullName: string
     photos: PhotoType
-    abotMe: string
+    aboutMe: string
     contacts: ContactsType
 }
 export type PostsType = {
@@ -59,7 +59,7 @@ export const profileInitialState: ProfilePageType = {
             small: 'string',
             large: 'string'
         },
-        abotMe: 'string',
+        aboutMe: 'string',
         contacts: {
             github: 'string',
             vk: 'string',
@@ -74,7 +74,7 @@ export const profileInitialState: ProfilePageType = {
     status: 'string'
 }
 
-export type ProfileActionsType = AddPostActionType | SetUserProfileActionType | SetStatusActionType | DeletePostActionCreator | SavePhotoSuccessActionType
+export type ProfileActionsType = AddPostActionType | SetUserProfileActionType | SetStatusActionType | DeletePostActionCreator | SavePhotoSuccessActionType | SaveProfileActionType
 
 export const profileReducer = (state: ProfilePageType = profileInitialState, action: AppActionsType): ProfilePageType => {
     switch (action.type) {
@@ -83,7 +83,7 @@ export const profileReducer = (state: ProfilePageType = profileInitialState, act
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                //newPostText: " "
+                newPostText: " "
             };
         }
         case DELETE_POST: {
@@ -104,6 +104,9 @@ export const profileReducer = (state: ProfilePageType = profileInitialState, act
         case SAVE_PHOTO_SUCCESS: {
             return { ...state, profile: { ...state.profile, photos: action.photos } };
         }
+        case SAVE_PROFILE: {
+            return { ...state, profile: action.profile};
+        }
         default:
             return state;
     }
@@ -116,6 +119,7 @@ export const deletePostAC = (postId: number): DeletePostActionCreator => ({ type
 export const setUserProfileAC = (profile: ProfileType): SetUserProfileActionType => ({ type: SET_USER_PROFILE, profile });
 export const setStatus = (status: string): SetStatusActionType => ({ type: SET_STATUS, status });
 export const savePhotoSuccessAC = (photos: PhotoType): SavePhotoSuccessActionType => ({ type: SAVE_PHOTO_SUCCESS, photos });
+export const saveProfileAC = (profile: ProfileType): SaveProfileActionType => ({ type: SAVE_PROFILE, profile });
 
 //Thunks
 export const getStatus = (userId: number) => async (dispatch: Dispatch<SetStatusActionType>) => {
@@ -138,6 +142,12 @@ export const getUserProfile = (userId: number) => async (dispatch: Dispatch<SetU
 
 export const savePhoto = (file: any) => async (dispatch: Dispatch<SavePhotoSuccessActionType>) => {
     let response = await profileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccessAC(response.data.data.photos));
+    }
+}
+export const saveProfile = (profile: ProfileType) => async (dispatch: Dispatch<SavePhotoSuccessActionType>) => {
+    let response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccessAC(response.data.data.photos));
     }
@@ -168,6 +178,10 @@ export type SavePhotoSuccessActionType = {
     type: typeof SAVE_PHOTO_SUCCESS
     photos: PhotoType
 }
+export type SaveProfileActionType = {
+    type: typeof SAVE_PROFILE
+    profile: ProfileType
+}
 
 const ADD_POST = 'profile/ADD-POST';
 /* const UPDATE_NEW_POST_TEXT = 'profile/UPDATE-NEW-POST-TEXT'; */
@@ -175,5 +189,6 @@ const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
 const DELETE_POST = 'profile/DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
+const SAVE_PROFILE = 'profile/SAVE_PROFILE'
 
 export default profileReducer;
