@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { ProfileType } from '../../../Redux/profile_reducer';
 import Preloader from '../../common/Preloader/Preloader';
 import { FormDataType } from '../../Login/Login';
-import ProfileData from './ProfileData';
-import ProfileDataFormReduxForm from './ProfileDataForm';
+import Contact from './Contacts';
+import ProfileDataForm from './ProfileDataForm';
 import classes from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
-
 
 type PropsType = {
     profile: ProfileType
@@ -32,6 +31,7 @@ const ProfileInfo = (props: PropsType) => {
     }
     const onSubmit = (formData: FormDataType) => {
         props.saveProfile(formData)
+        setEditMode(false)
     }
 
     return (
@@ -41,7 +41,7 @@ const ProfileInfo = (props: PropsType) => {
                 {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
                 <span>I love this game</span>
                 {editMode
-                    ? <ProfileDataFormReduxForm onSubmit={onSubmit} profile={props.profile}                    />
+                    ? <ProfileDataForm onSubmit={onSubmit} initialValues={props.profile} />
                     : <ProfileData goToEditMode={() => { setEditMode(true) }} profile={props.profile} isOwner={props.isOwner} />}
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
             </div>
@@ -49,4 +49,39 @@ const ProfileInfo = (props: PropsType) => {
     )
 }
 
-export default ProfileInfo
+export type ProfileDataType = {
+    profile: ProfileType
+    isOwner: boolean
+    goToEditMode: () => void
+}
+
+
+const ProfileData = (props: ProfileDataType) => {
+
+    return (
+        <div>
+            {props.isOwner && <div><button onClick={props.goToEditMode}>edit</button></div>}
+            <div>
+                <b>Full name</b> : {props.profile.fullName}
+            </div>
+            <div>
+                <b>Looking for a job</b> : {props.profile.lookingForAJob ? "yes" : "no"}
+            </div>
+            {props.profile.lookingForAJob &&
+                <div>
+                    <b>My professional skills</b> : {props.profile.lookingForAJobDescription}
+                </div>
+            }
+            <div>
+                <b>About me</b> : {props.profile.aboutMe}
+            </div>
+            <div>
+                <b>Contacts</b> : {Object.keys(props.profile.contacts).map((key: string) => {
+                    return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
+                })}
+            </div>
+        </div>
+    )
+}
+
+export default ProfileInfo;
