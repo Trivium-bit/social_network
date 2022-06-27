@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import classes from './Navbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -7,22 +7,22 @@ const Navbar = () => {
     return (
         <nav className={classes.nav}>
             <div className={`${classes.item} ${classes.active}`}>
-            <FontAwesomeIcon icon={['fal', 'home']} fixedWidth /><NavLink to="/profile" activeClassName={classes.activeLink}> Profile</NavLink>
+            <FontAwesomeIcon icon={['fal', 'home']} fixedWidth /><Link to="/profile" className={classes.activeLink}> Profile</Link>
             </div>
             <div className={`${classes.item} ${classes.active}`}>
-                <NavLink to="/dialogs" activeClassName={classes.activeLink}>Messages</NavLink>
+                <Link to="/dialogs" className={classes.activeLink}>Messages</Link>
             </div>
             <div className={`${classes.item} ${classes.active}`}>
-                <NavLink to="/users" activeClassName={classes.activeLink}>Users</NavLink>
+                <Link to="/users" className={classes.activeLink}>Users</Link>
             </div>
             <div className={`${classes.item} ${classes.active}`}>
-                <NavLink to="/news " activeClassName={classes.activeLink}>News</NavLink>
+                <Link to="/news " className={classes.activeLink}>News</Link>
             </div>
             <div className={classes.item}>
-                <NavLink to="/musik" activeClassName={classes.activeLink}> Music</NavLink>
+                <Link to="/musik" className={classes.activeLink}> Music</Link>
             </div>
             <div className={classes.item}>
-                <NavLink to="/settigs" activeClassName={classes.activeLink}>Settings</NavLink>
+                <Link to="/settigs" className={classes.activeLink}>Settings</Link>
             </div>
         </nav>
     )

@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import './App.css';
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
-import { BrowserRouter, Route, withRouter } from "react-router-dom"
+import { BrowserRouter, Route} from "react-router-dom"
 import Login from "./components/Login/Login";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import { connect, Provider } from "react-redux";
@@ -46,11 +46,11 @@ class App extends React.Component<InitialPropsType> {
                     </div>
 
                     <div className={s.main}>
-                        <Route path="/login" render={() => <Login />} />
-                        <Route path="/profile" render={() => <ProfileContainer />} />
+                        <Route path="/login" element={() => <Login />} />
+                        <Route path="/profile" element={() => <ProfileContainer />} />
                         <Suspense fallback={<Preloader />}>
-                            <Route path="/dialogs" render={() => <DialogsContainer />} />
-                            <Route path="/users" render={() => <UsersContainer />} />
+                            <Route path="/dialogs" element={() => <DialogsContainer />} />
+                            <Route path="/users" element={() => <UsersContainer />} />
                         </Suspense>
                     </div>
                    
@@ -65,7 +65,7 @@ const mapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized
 })
 
-let AppContainer = compose<React.ComponentType>(withRouter, connect(mapStateToProps, { initializeApp }))(App);
+let AppContainer = compose<React.ComponentType>(connect(mapStateToProps, { initializeApp }))(App);
 
 const SamuraiJSApp = () => {
     return <BrowserRouter>

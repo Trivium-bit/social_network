@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import classes from './Header.module.css';
 
 type AuthType = {
@@ -16,7 +16,7 @@ const Header = (props: AuthType) => {
             <div className={classes.loginBlock}>
                 {props.isAuth
                     ? <div>{props.login} - <button onClick={props.logout}>Log out</button></div>
-                    : <NavLink to={'/login'}>Login</NavLink>}
+                    : <Link to={'/login'}>Login</Link>}
             </div>
         </header>
     )
