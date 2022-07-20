@@ -145,7 +145,7 @@ export const saveProfile = (profile: ProfileType) => async (dispatch: Dispatch<G
     const userId = getState().auth.id
     let response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
-        dispatch(getUserProfile(userId));
+        dispatch(setUserProfileAC(response.data));
     }
 }
 
