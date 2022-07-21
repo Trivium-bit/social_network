@@ -4,10 +4,10 @@ import { createField, Input } from "../common/FormsControls/FormsControls";
 import { required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { loginTC } from "../../Redux/auth_reducer";
-import { Navigate } from "react-router";
 import { AppStateType } from "../../Redux/redux-store";
 import style from "./../common/FormsControls/FormsControls.module.css"
 import s from "./Login.module.css"
+import { Route } from 'react-router-dom';
 
 export type FormDataType = {
     email: string
@@ -41,7 +41,7 @@ const Login = (props: any) => {
     }
 
     if (props.isAuth) {
-        return <Navigate to={"/profile"} />
+        return  <Route path={"/profile"} />
     }
 
     return <div className={s.loginContainer}>
