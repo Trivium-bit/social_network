@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import './App.css';
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
-import { BrowserRouter, Route, withRouter } from "react-router-dom"
 import Login from "./components/Login/Login";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import { connect, Provider } from "react-redux";
@@ -11,6 +10,8 @@ import { initializeApp } from "./Redux/app_reducer";
 import store, { AppStateType } from "./Redux/redux-store";
 import Preloader from "./components/common/Preloader/Preloader";
 import s from "./AppWrapper.module.css";
+import { Route, withRouter } from 'react-router';
+import { BrowserRouter} from 'react-router-dom';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
@@ -41,22 +42,22 @@ class App extends React.Component<InitialPropsType> {
                     </div>
 
                     <div className={s.content}>
-                    <div className={s.navbar}>
-                        <Navbar />
-                    </div>
+                        <div className={s.navbar}>
+                            <Navbar />
+                        </div>
 
-                    <div className={s.main}>
-                        <Route path="/login" render={() => <Login />} />
-                        <Route path="/profile" render={() => <ProfileContainer />} />
-                        <Suspense fallback={<Preloader />}>
-                            <Route path="/dialogs" render={() => <DialogsContainer />} />
-                            <Route path="/users" render={() => <UsersContainer />} />
-                        </Suspense>
+                        <div className={s.main}>
+                            <Route path="/login" component={() => <Login />} />
+                            <Route path="/profile" component={() => <ProfileContainer />} />
+                            <Suspense fallback={<Preloader />}>
+                                <Route path="/dialogs" component={() => <DialogsContainer />} />
+                                <Route path="/users" component={() => <UsersContainer />} />
+                            </Suspense>
+                        </div>
+
+
                     </div>
-                   
-                 
                 </div>
-            </div>
             </BrowserRouter >);
     }
 }
