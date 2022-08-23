@@ -6,13 +6,14 @@ import { AppStateType } from "../../Redux/redux-store";
 import { getUserProfile, getStatus, updateStatus, ProfileType, savePhoto, saveProfile } from "../../Redux/profile_reducer";
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { FormDataType } from '../Login/Login';
 
 type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
     getStatus: (userId: number) => void
     updateStatus: (status: string) => void
     savePhoto: () => void
-    saveProfile: () => void
+    saveProfile: (formData: FormDataType) => void
 }
 
 type MapStateToPropsType = {
@@ -39,7 +40,6 @@ class ProfileContainer extends React.Component<ProfileContainerProsType> {
     }
 
     componentDidMount() {
-        debugger
         this.refreshProfile()
     }
     componentDidUpdate(props: MapStateToPropsType) {

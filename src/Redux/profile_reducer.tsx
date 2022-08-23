@@ -141,8 +141,8 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch<SavePhotoSucce
         dispatch(savePhotoSuccessAC(response.data.data.photos));
     }
 }
-export const saveProfile = (profile: ProfileType) => async (dispatch: Dispatch<GetUserProfileActionType>, getState: () => AppStateType) => {
-    const userId = getState().auth.id
+export const saveProfile = (profile: ProfileType) => async (dispatch: Dispatch<GetUserProfileActionType>, getState: AppStateType) => {
+    const userId = getState.auth.id
     let response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
         dispatch(setUserProfileAC(response.data));

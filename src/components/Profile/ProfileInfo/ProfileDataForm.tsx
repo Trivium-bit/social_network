@@ -5,14 +5,12 @@ import { FormDataType } from "../../Login/Login"
 
 interface ProfileDataFormType extends HTMLFormControlsCollection {
     usernameInput: HTMLInputElement
-  }
+}
 interface ProfileDataFormType extends FormDataType {
     initialValues: ProfileType
 }
 
-
-
-export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormType>> = ({ handleSubmit }) => {
+export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormType>> = ({handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit}>
             <div><button>save</button></div>
@@ -25,7 +23,6 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormType>> =
             <div>
                 <b>My professional skills</b>: {createField("My professional skills", "lookingForAJobDescription", [], Textarea)}
             </div>
-
             <div>
                 <b>About me</b>: {createField("About me", "aboutMee", [], Textarea)}
             </div>
