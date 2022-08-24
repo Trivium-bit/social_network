@@ -1,4 +1,7 @@
-import { Dispatch } from "redux";
+import { RootStateOrAny } from "react-redux";
+import { AnyAction, Dispatch } from "redux";
+import { stopSubmit } from "redux-form";
+import { ThunkAction } from "redux-thunk";
 import { usersAPI, profileAPI } from "../api/api";
 import { AppActionsType, AppStateType } from "./redux-store";
 
@@ -24,7 +27,7 @@ export type ProfilePageType = {
     status: string
 }
 export type ProfileType = {
-    id: string
+    id: number
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
@@ -51,27 +54,27 @@ export const profileInitialState: ProfilePageType = {
     ] as Array<PostsType>,
     newPostText: 'it-kamasutra.com',
     profile: {
-        id: 'string',
+        id: 0,
         lookingForAJob: false,
-        lookingForAJobDescription: 'string',
-        fullName: 'string',
+        lookingForAJobDescription: '',
+        fullName: '',
         photos: {
-            small: 'string',
-            large: 'string'
+            small: '',
+            large: ''
         },
-        aboutMe: 'string',
+        aboutMe: '',
         contacts: {
-            github: 'string',
-            vk: 'string',
-            facebook: 'string',
-            instagram: 'string',
-            twitter: 'string',
-            website: 'string',
-            youtube: 'string',
-            mainLink: 'string',
+            github: '',
+            vk: '',
+            facebook: '',
+            instagram: '',
+            twitter: '',
+            website: '',
+            youtube: '',
+            mainLink: '',
         },
     },
-    status: 'string'
+    status: ''
 }
 
 export type ProfileActionsType = AddPostActionType | GetUserProfileActionType | SetStatusActionType | DeletePostActionCreator | SavePhotoSuccessActionType
@@ -141,11 +144,15 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch<SavePhotoSucce
         dispatch(savePhotoSuccessAC(response.data.data.photos));
     }
 }
-export const saveProfile = (profile: ProfileType) => async (dispatch: Dispatch<GetUserProfileActionType>, getState: AppStateType) => {
-    const userId = getState.auth.id
+export const saveProfile = (profile: ProfileType): ThunkAction<void, AppStateType, unknown, AnyAction> => async dispatch => {
+    // const userId = getState().auth.userId
+    const userId = profile.id
     let response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
-        dispatch(setUserProfileAC(response.data));
+        dispatch(getUserProfile(userId));
+    } else {
+        dispatch(stopSubmit('edit-profile', {_error: response.data.message[0]}));
+        return Promise.reject(response.data.message[0])
     }
 }
 

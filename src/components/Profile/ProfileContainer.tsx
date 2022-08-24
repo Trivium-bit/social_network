@@ -13,7 +13,7 @@ type MapDispatchToPropsType = {
     getStatus: (userId: number) => void
     updateStatus: (status: string) => void
     savePhoto: () => void
-    saveProfile: (formData: FormDataType) => void
+    saveProfile: (formData: FormDataType) => Promise<any>
 }
 
 type MapStateToPropsType = {

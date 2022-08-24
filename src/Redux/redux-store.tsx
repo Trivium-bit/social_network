@@ -25,5 +25,7 @@ let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 window.store = store
 
 export type AppStateType = ReturnType<typeof rootReducer>
+export type AppDispath = typeof store.dispatch
+
 
 export default store;

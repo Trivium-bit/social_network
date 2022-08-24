@@ -22,7 +22,7 @@ type MyPostsPropsType = {
 
 const Myposts = (props: MyPostsPropsType) => {
 
-    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id} />);
+    let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} id={p.id} />);
 
     let onAddPost = (values: AddNewPostFormType) => {
         props.addPost(values.newPostText);
